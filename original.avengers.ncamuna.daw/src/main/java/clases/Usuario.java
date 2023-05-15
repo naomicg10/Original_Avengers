@@ -10,6 +10,14 @@ import utils.DAO;
 public class Usuario extends ElementoConNombre {
 	private String email;
 	private String fechaNacimiento;
+	private Personaje personaje;
+	
+	public Usuario(String nombre, String email, String fechaNacimiento, Personaje personaje) {
+		super(nombre);
+		this.email = email;
+		this.fechaNacimiento = fechaNacimiento;
+		this.personaje = personaje;
+	}
 	
 	public Usuario(String nombre, String contraseña, String email, String fechaNacimiento) throws SQLException {
 		super(nombre);
@@ -22,7 +30,8 @@ public class Usuario extends ElementoConNombre {
 		this.email = email;
 		this.fechaNacimiento = fechaNacimiento;
 	}
-	
+
+
 	public Usuario(String nombre, String contraseña) throws SQLException {
 		super(nombre);
 		try {
@@ -52,10 +61,13 @@ public class Usuario extends ElementoConNombre {
 		return fechaNacimiento;
 	}
 	
+	public Personaje getPersonaje() {
+		return personaje;
+	}
+
 	@Override
 	public String toString() {
-		return "Usuario [email=" + email + ", fecha_nacimiento=" + fechaNacimiento
-				+ "]";
+		return "Usuario [email=" + email + ", fechaNacimiento=" + fechaNacimiento + ", personaje=" + personaje + "]";
 	}
 	
 }

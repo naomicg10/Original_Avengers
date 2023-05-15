@@ -198,8 +198,9 @@ public class PantallaEleccionPJ extends JPanel{
 		radioButton.addItemListener(new ItemListener() {
 		    public void itemStateChanged(ItemEvent e) {
 		        if (e.getStateChange() == ItemEvent.SELECTED) {
+		        	ImageIcon icono = new ImageIcon("C:\\Users\\naomi\\OneDrive\\Documentos\\Original_Avengers\\AvengersIcon.png");
 		            int opcion = JOptionPane.showOptionDialog( radioButton, "¿Quieres este personaje?", "Confirmación",
-		                    JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, null, null);
+		                    JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, icono, null, null);
 		            
 		            if (opcion == JOptionPane.YES_OPTION) {
 		                System.out.println("Has hecho clic en el botón 'Aceptar'");
