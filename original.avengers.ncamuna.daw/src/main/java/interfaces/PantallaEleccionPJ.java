@@ -2,17 +2,18 @@ package interfaces;
 
 import javax.swing.JPanel;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.ImageIcon;
 import javax.swing.JRadioButton;
 import java.awt.Color;
-import javax.swing.JPopupMenu;
-import java.awt.Component;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.awt.Font;
 
 public class PantallaEleccionPJ extends JPanel{
-	public PantallaEleccionPJ() {
+	private Ventana ventana;
+	public PantallaEleccionPJ(Ventana v) {
+		this.ventana=v;
 		setBackground(new Color(0, 0, 0));
 		setLayout(null);
 		
@@ -46,47 +47,53 @@ public class PantallaEleccionPJ extends JPanel{
 		lblNewLabel_4_1.setBounds(821, 104, 83, 172);
 		add(lblNewLabel_4_1);
 		
-		JRadioButton rdbtnNewRadioButton = new JRadioButton("Capitán America");
-		rdbtnNewRadioButton.setFont(new Font("Tahoma", Font.BOLD, 11));
-		rdbtnNewRadioButton.setForeground(new Color(255, 255, 255));
-		rdbtnNewRadioButton.setBounds(251, 278, 130, 23);
-		rdbtnNewRadioButton.setContentAreaFilled(false);
-		add(rdbtnNewRadioButton);
+		JRadioButton RadioButton = new JRadioButton("Capitán America");
+		abrirVentana(RadioButton, ventana);
+		RadioButton.setFont(new Font("Tahoma", Font.BOLD, 11));
+		RadioButton.setForeground(new Color(255, 255, 255));
+		RadioButton.setBounds(251, 278, 130, 23);
+		RadioButton.setContentAreaFilled(false);
+		add(RadioButton);
 		
-		JRadioButton rdbtnNewRadioButton_1 = new JRadioButton("Iron Man");
-		rdbtnNewRadioButton_1.setFont(new Font("Tahoma", Font.BOLD, 11));
-		rdbtnNewRadioButton_1.setForeground(new Color(255, 250, 250));
-		rdbtnNewRadioButton_1.setBounds(153, 278, 96, 23);
-		rdbtnNewRadioButton_1.setContentAreaFilled(false);
-		add(rdbtnNewRadioButton_1);
+		final JRadioButton RadioButton_1 = new JRadioButton("Iron Man");
+		abrirVentana(RadioButton_1, ventana);
+		RadioButton_1.setFont(new Font("Tahoma", Font.BOLD, 11));
+		RadioButton_1.setForeground(new Color(255, 250, 250));
+		RadioButton_1.setBounds(153, 278, 96, 23);
+		RadioButton_1.setContentAreaFilled(false);
+		add(RadioButton_1);
 		
-		JRadioButton rdbtnNewRadioButton_2 = new JRadioButton("Thor");
-		rdbtnNewRadioButton_2.setFont(new Font("Tahoma", Font.BOLD, 11));
-		rdbtnNewRadioButton_2.setForeground(new Color(255, 255, 255));
-		rdbtnNewRadioButton_2.setBounds(419, 280, 68, 23);
-		rdbtnNewRadioButton_2.setContentAreaFilled(false);
-		add(rdbtnNewRadioButton_2);
+		JRadioButton RadioButton_2 = new JRadioButton("Thor");
+		abrirVentana(RadioButton_2, ventana);
+		RadioButton_2.setFont(new Font("Tahoma", Font.BOLD, 11));
+		RadioButton_2.setForeground(new Color(255, 255, 255));
+		RadioButton_2.setBounds(419, 280, 68, 23);
+		RadioButton_2.setContentAreaFilled(false);
+		add(RadioButton_2);
 		
-		JRadioButton rdbtnNewRadioButton_3 = new JRadioButton("Hulk");
-		rdbtnNewRadioButton_3.setFont(new Font("Tahoma", Font.BOLD, 11));
-		rdbtnNewRadioButton_3.setForeground(new Color(255, 255, 255));
-		rdbtnNewRadioButton_3.setBounds(566, 280, 68, 23);
-		rdbtnNewRadioButton_3.setContentAreaFilled(false);
-		add(rdbtnNewRadioButton_3);
+		JRadioButton RadioButton_3 = new JRadioButton("Hulk");
+		abrirVentana(RadioButton_3, ventana);
+		RadioButton_3.setFont(new Font("Tahoma", Font.BOLD, 11));
+		RadioButton_3.setForeground(new Color(255, 255, 255));
+		RadioButton_3.setBounds(566, 280, 68, 23);
+		RadioButton_3.setContentAreaFilled(false);
+		add(RadioButton_3);
 		
-		JRadioButton rdbtnNewRadioButton_4 = new JRadioButton("Viuda Negra");
-		rdbtnNewRadioButton_4.setFont(new Font("Tahoma", Font.BOLD, 11));
-		rdbtnNewRadioButton_4.setForeground(new Color(255, 255, 255));
-		rdbtnNewRadioButton_4.setBounds(695, 278, 109, 23);
-		rdbtnNewRadioButton_4.setContentAreaFilled(false);
-		add(rdbtnNewRadioButton_4);
+		JRadioButton RadioButton_4 = new JRadioButton("Viuda Negra");
+		abrirVentana(RadioButton_4, ventana);
+		RadioButton_4.setFont(new Font("Tahoma", Font.BOLD, 11));
+		RadioButton_4.setForeground(new Color(255, 255, 255));
+		RadioButton_4.setBounds(695, 278, 109, 23);
+		RadioButton_4.setContentAreaFilled(false);
+		add(RadioButton_4);
 		
-		JRadioButton rdbtnNewRadioButton_5 = new JRadioButton("Ojo de Halcón");
-		rdbtnNewRadioButton_5.setFont(new Font("Tahoma", Font.BOLD, 11));
-		rdbtnNewRadioButton_5.setForeground(new Color(255, 255, 255));
-		rdbtnNewRadioButton_5.setBounds(820, 278, 109, 23);
-		rdbtnNewRadioButton_5.setContentAreaFilled(false);
-		add(rdbtnNewRadioButton_5);
+		JRadioButton RadioButton_5 = new JRadioButton("Ojo de Halcón");
+		abrirVentana(RadioButton_5, ventana);
+		RadioButton_5.setFont(new Font("Tahoma", Font.BOLD, 11));
+		RadioButton_5.setForeground(new Color(255, 255, 255));
+		RadioButton_5.setBounds(820, 278, 109, 23);
+		RadioButton_5.setContentAreaFilled(false);
+		add(RadioButton_5);
 		
 		JLabel lblNewLabel_5 = new JLabel("\r\n");
 		lblNewLabel_5.setIcon(new ImageIcon("C:\\Users\\naomi\\OneDrive\\Documentos\\Original_Avengers\\TituloEleccion.png"));
@@ -123,47 +130,53 @@ public class PantallaEleccionPJ extends JPanel{
 		lblNewLabel_6_6.setBounds(143, 343, 89, 180);
 		add(lblNewLabel_6_6);
 		
-		JRadioButton rdbtnNewRadioButton_1_1 = new JRadioButton("Loki");
-		rdbtnNewRadioButton_1_1.setFont(new Font("Tahoma", Font.BOLD, 11));
-		rdbtnNewRadioButton_1_1.setForeground(new Color(255, 255, 255));
-		rdbtnNewRadioButton_1_1.setBounds(168, 530, 49, 23);
-		rdbtnNewRadioButton_1_1.setContentAreaFilled(false);
-		add(rdbtnNewRadioButton_1_1);
+		JRadioButton RadioButton_6 = new JRadioButton("Loki");
+		abrirVentana(RadioButton_6, ventana);
+		RadioButton_6.setFont(new Font("Tahoma", Font.BOLD, 11));
+		RadioButton_6.setForeground(new Color(255, 255, 255));
+		RadioButton_6.setBounds(168, 530, 49, 23);
+		RadioButton_6.setContentAreaFilled(false);
+		add(RadioButton_6);
 		
-		JRadioButton rdbtnNewRadioButton_1_2 = new JRadioButton("Ultrón");
-		rdbtnNewRadioButton_1_2.setFont(new Font("Tahoma", Font.BOLD, 11));
-		rdbtnNewRadioButton_1_2.setForeground(new Color(255, 255, 255));
-		rdbtnNewRadioButton_1_2.setBounds(278, 530, 62, 23);
-		rdbtnNewRadioButton_1_2.setContentAreaFilled(false);
-		add(rdbtnNewRadioButton_1_2);
+		JRadioButton RadioButton_7 = new JRadioButton("Ultrón");
+		abrirVentana(RadioButton_7, ventana);
+		RadioButton_7.setFont(new Font("Tahoma", Font.BOLD, 11));
+		RadioButton_7.setForeground(new Color(255, 255, 255));
+		RadioButton_7.setBounds(278, 530, 62, 23);
+		RadioButton_7.setContentAreaFilled(false);
+		add(RadioButton_7);
 		
-		JRadioButton rdbtnNewRadioButton_1_3 = new JRadioButton("Barón Zemo");
-		rdbtnNewRadioButton_1_3.setFont(new Font("Tahoma", Font.BOLD, 11));
-		rdbtnNewRadioButton_1_3.setForeground(new Color(255, 255, 255));
-		rdbtnNewRadioButton_1_3.setBounds(399, 530, 110, 23);
-		rdbtnNewRadioButton_1_3.setContentAreaFilled(false);
-		add(rdbtnNewRadioButton_1_3);
+		JRadioButton RadioButton_8 = new JRadioButton("Barón Zemo");
+		abrirVentana(RadioButton_8, ventana);
+		RadioButton_8.setFont(new Font("Tahoma", Font.BOLD, 11));
+		RadioButton_8.setForeground(new Color(255, 255, 255));
+		RadioButton_8.setBounds(399, 530, 110, 23);
+		RadioButton_8.setContentAreaFilled(false);
+		add(RadioButton_8);
 		
-		JRadioButton rdbtnNewRadioButton_1_4 = new JRadioButton("Ebony Maw");
-		rdbtnNewRadioButton_1_4.setFont(new Font("Tahoma", Font.BOLD, 11));
-		rdbtnNewRadioButton_1_4.setForeground(new Color(255, 255, 255));
-		rdbtnNewRadioButton_1_4.setBounds(566, 530, 93, 23);
-		rdbtnNewRadioButton_1_4.setContentAreaFilled(false);
-		add(rdbtnNewRadioButton_1_4);
+		JRadioButton RadioButton_9 = new JRadioButton("Ebony Maw");
+		abrirVentana(RadioButton_9, ventana);
+		RadioButton_9.setFont(new Font("Tahoma", Font.BOLD, 11));
+		RadioButton_9.setForeground(new Color(255, 255, 255));
+		RadioButton_9.setBounds(566, 530, 93, 23);
+		RadioButton_9.setContentAreaFilled(false);
+		add(RadioButton_9);
 		
-		JRadioButton rdbtnNewRadioButton_1_5 = new JRadioButton("Kang El Conquistador");
-		rdbtnNewRadioButton_1_5.setFont(new Font("Tahoma", Font.BOLD, 11));
-		rdbtnNewRadioButton_1_5.setForeground(new Color(255, 255, 255));
-		rdbtnNewRadioButton_1_5.setBounds(681, 530, 148, 23);
-		rdbtnNewRadioButton_1_5.setContentAreaFilled(false);
-		add(rdbtnNewRadioButton_1_5);
+		JRadioButton RadioButton_10 = new JRadioButton("Kang El Conquistador");
+		abrirVentana(RadioButton_10, ventana);
+		RadioButton_10.setFont(new Font("Tahoma", Font.BOLD, 11));
+		RadioButton_10.setForeground(new Color(255, 255, 255));
+		RadioButton_10.setBounds(681, 530, 148, 23);
+		RadioButton_10.setContentAreaFilled(false);
+		add(RadioButton_10);
 		
-		JRadioButton rdbtnNewRadioButton_1_6 = new JRadioButton("Thanos");
-		rdbtnNewRadioButton_1_6.setFont(new Font("Tahoma", Font.BOLD, 11));
-		rdbtnNewRadioButton_1_6.setForeground(new Color(255, 255, 255));
-		rdbtnNewRadioButton_1_6.setBounds(850, 530, 68, 23);
-		rdbtnNewRadioButton_1_6.setContentAreaFilled(false);
-		add(rdbtnNewRadioButton_1_6);
+		JRadioButton RadioButton_11 = new JRadioButton("Thanos");
+		abrirVentana(RadioButton_11, ventana);
+		RadioButton_11.setFont(new Font("Tahoma", Font.BOLD, 11));
+		RadioButton_11.setForeground(new Color(255, 255, 255));
+		RadioButton_11.setBounds(850, 530, 68, 23);
+		RadioButton_11.setContentAreaFilled(false);
+		add(RadioButton_11);
 		
 		JLabel lblNewLabel_7 = new JLabel("");
 		lblNewLabel_7.setIcon(new ImageIcon("C:\\Users\\naomi\\OneDrive\\Documentos\\Original_Avengers\\TituloHeroes.png"));
@@ -180,20 +193,21 @@ public class PantallaEleccionPJ extends JPanel{
 		lblNewLabel_9.setBounds(0, 0, 1060, 598);
 		add(lblNewLabel_9);
 	}
-	private static void addPopup(Component component, final JPopupMenu popup) {
-		component.addMouseListener(new MouseAdapter() {
-			public void mousePressed(MouseEvent e) {
-				if (e.isPopupTrigger()) {
-					showMenu(e);
-				}
-			}
-			public void mouseReleased(MouseEvent e) {
-				if (e.isPopupTrigger()) {
-					showMenu(e);
-				}
-			}
-			private void showMenu(MouseEvent e) {
-				popup.show(e.getComponent(), e.getX(), e.getY());
+	
+	private static void abrirVentana(final JRadioButton radioButton, final Ventana ventana) {
+		radioButton.addItemListener(new ItemListener() {
+		    public void itemStateChanged(ItemEvent e) {
+		        if (e.getStateChange() == ItemEvent.SELECTED) {
+		            int opcion = JOptionPane.showOptionDialog( radioButton, "¿Quieres este personaje?", "Confirmación",
+		                    JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, null, null);
+		            
+		            if (opcion == JOptionPane.YES_OPTION) {
+		                System.out.println("Has hecho clic en el botón 'Aceptar'");
+		                ventana.cambiarAPantalla(PantallaNivel1.class);
+		            } else if (opcion == JOptionPane.NO_OPTION) {
+		                System.out.println("Has hecho clic en el botón 'Cancelar'");
+		            }
+		        }
 			}
 		});
 	}
