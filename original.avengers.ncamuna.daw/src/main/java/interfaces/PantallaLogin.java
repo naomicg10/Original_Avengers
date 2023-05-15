@@ -42,7 +42,7 @@ public class PantallaLogin extends JPanel{
 				}
 				try {
 					Usuario usuario=new Usuario(nombre, contraseña1);
-					
+					ventana.cambiarAPantalla(PantallaEleccionPJ.class);
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();

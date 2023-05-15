@@ -20,6 +20,9 @@ public class Ventana extends JFrame{
 		if(clase.equals(PantallaRegistro.class)) {
 			this.setContentPane(new PantallaRegistro(this));
 		}
+		if(clase.equals(PantallaEleccionPJ.class)) {
+			this.setContentPane(new PantallaEleccionPJ());
+		}
 		this.getContentPane().setVisible(true);
 	}
 }
