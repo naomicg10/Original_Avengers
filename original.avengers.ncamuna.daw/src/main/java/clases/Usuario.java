@@ -5,23 +5,25 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashSet;
 
+import excepciones.ClienteNoExisteException;
+import excepciones.ContraseñaInvalidaExcepcion;
 import utils.DAO;
 
 public class Usuario extends ElementoConNombre {
 	private String email;
 	private String fechaNacimiento;
 	private Personaje personaje;
-	
+
 	public Usuario(String nombre, String email, String fechaNacimiento, Personaje personaje) {
 		super(nombre);
 		this.email = email;
 		this.fechaNacimiento = fechaNacimiento;
 		this.personaje = personaje;
 	}
-	
+
 	public Usuario(String nombre, String contraseña, String email, String fechaNacimiento) throws SQLException {
 		super(nombre);
-		HashMap<String, Object> datos=new HashMap<String, Object>();
+		HashMap<String, Object> datos = new HashMap<String, Object>();
 		datos.put("nombre", nombre);
 		datos.put("contraseña", contraseña);
 		datos.put("email", email);
@@ -31,8 +33,7 @@ public class Usuario extends ElementoConNombre {
 		this.fechaNacimiento = fechaNacimiento;
 	}
 
-
-	public Usuario(String nombre, String contraseña) throws SQLException {
+	public Usuario(String nombre, String contraseña) throws SQLException, ClienteNoExisteException, ContraseñaInvalidaExcepcion {
 		super(nombre);
 		try {
 			HashMap<String, Object> datos = new HashMap<String, Object>();
@@ -60,7 +61,7 @@ public class Usuario extends ElementoConNombre {
 	public String getFechaNacimiento() {
 		return fechaNacimiento;
 	}
-	
+
 	public Personaje getPersonaje() {
 		return personaje;
 	}
@@ -69,5 +70,5 @@ public class Usuario extends ElementoConNombre {
 	public String toString() {
 		return "Usuario [email=" + email + ", fechaNacimiento=" + fechaNacimiento + ", personaje=" + personaje + "]";
 	}
-	
+
 }
