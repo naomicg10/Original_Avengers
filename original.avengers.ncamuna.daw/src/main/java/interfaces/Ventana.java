@@ -6,6 +6,7 @@ import clases.Usuario;
 
 public class Ventana extends JFrame {
 	protected Usuario clienteLogado;
+	protected Usuario clienteRegistrado;
 	public Ventana() {
 		this.setSize(1060, 620);
 		this.setTitle("Original Avengers");

@@ -7,11 +7,13 @@ import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.ImageIcon;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.SQLException;
+import java.sql.SQLIntegrityConstraintViolationException;
 
 import javax.swing.JSpinner;
 import javax.swing.JComboBox;
@@ -54,21 +56,26 @@ public class PantallaRegistro extends JPanel {
 		btnRegistrarse.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				String nombre = textUsuario.getText();
-				String email = textEmail.getText();
-				char[] contraseña = password.getPassword();
-				String contraseña1 = null;
-				for (byte i = 0; i < contraseña.length; i++) {
-					contraseña1 += contraseña[i];
-				}
-				String fechaNacimiento = textFecha.getText();
 				try {
-					Usuario usuario = new Usuario(nombre, contraseña1, email, fechaNacimiento);
+					String nombre = textUsuario.getText();
+					String email = textEmail.getText();
+					char[] contraseña = password.getPassword();
+					String contraseña1 = "";
+					for (byte i = 0; i < contraseña.length; i++) {
+						contraseña1 += contraseña[i];
+					}
+					String fechaNacimiento = textFecha.getText();
+					new Usuario(nombre, contraseña1, email, fechaNacimiento);
+					JOptionPane.showMessageDialog(ventana, "Registrado correctamente", "Éxito",
+                            JOptionPane.INFORMATION_MESSAGE);
 					ventana.cambiarAPantalla(PantallaLogin.class);
-				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
+				} catch (SQLIntegrityConstraintViolationException e3) {
+                    JOptionPane.showMessageDialog(ventana, "El email ya existe", "No se pudo registrar",
+                            JOptionPane.ERROR_MESSAGE);
+                } catch (SQLException e1) {
+                    JOptionPane.showMessageDialog(ventana, e1.getMessage(), "No se puede conectar a la base de datos",
+                            JOptionPane.ERROR_MESSAGE);
+                }
 			}
 		});
 		btnRegistrarse.setToolTipText("Pincha aquí para logearte");

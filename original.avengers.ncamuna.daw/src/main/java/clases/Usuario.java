@@ -29,29 +29,33 @@ public class Usuario extends ElementoConNombre {
 		datos.put("email", email);
 		datos.put("fechaNacimiento", fechaNacimiento);
 		DAO.insertar("usuario", datos);
+		this.setNombre(nombre);
 		this.email = email;
 		this.fechaNacimiento = fechaNacimiento;
 	}
 
 	public Usuario(String nombre, String contraseña) throws SQLException, ClienteNoExisteException, ContraseñaInvalidaExcepcion {
 		super(nombre);
-		try {
-			HashMap<String, Object> datos = new HashMap<String, Object>();
-			datos.put("nombre", nombre);
-			datos.put("contraseña", contraseña);
 			LinkedHashSet<String> columnasSacar = new LinkedHashSet<String>();
 			columnasSacar.add("nombre");
 			columnasSacar.add("contraseña");
+			columnasSacar.add("email");
+			columnasSacar.add("fechaNacimiento");
 			HashMap<String, Object> restricciones = new HashMap<String, Object>();
+			restricciones.put("nombre", nombre);
 			ArrayList<Object> cliente = DAO.consultar("usuario", columnasSacar, restricciones);
-			for (byte i = 0; i < cliente.size(); i++) {
-				System.out.print(cliente.get(i) + " | ");
+			if(cliente.isEmpty()) {
+				throw new ClienteNoExisteException("Cliente no extiste");
+			}else {
+				String contraseñaAlmacenada=(String)cliente.get(1);
+				if(contraseñaAlmacenada.equals(contraseña)) {
+					this.setNombre((String) cliente.get(0));
+					this.email = (String) cliente.get(2);
+					this.fechaNacimiento = (String) cliente.get(3);
+				}else {
+					throw new ContraseñaInvalidaExcepcion("Contraseña incorrecta");
+				}
 			}
-			System.out.println();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 	}
 
 	public String getEmail() {

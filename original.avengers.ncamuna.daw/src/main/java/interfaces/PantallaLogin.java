@@ -39,13 +39,12 @@ public class PantallaLogin extends JPanel {
 			public void mouseClicked(MouseEvent e) {
 				String nombre = txtUsuario.getText();
 				char[] contraseña = password.getPassword();
-				String contraseña1 = null;
+				String contraseña1 = "";
 				System.out.println(nombre + " : " + contraseña1);
 				for (byte i = 0; i < contraseña.length; i++) {
 					contraseña1 += contraseña[i];
 				}
 				try {
-					Usuario usuario = new Usuario(nombre, contraseña1);
 					ventana.clienteLogado=new Usuario(nombre,contraseña1);
 					JOptionPane.showMessageDialog(ventana, "Bienvenid@, "
 							+ventana.clienteLogado.getNombre(),"Inicio de sesión exitoso",
