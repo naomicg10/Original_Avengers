@@ -2,7 +2,9 @@ package interfaces;
 
 import javax.swing.JFrame;
 
+import clases.Heroe;
 import clases.Usuario;
+import clases.Villano;
 
 public class Ventana extends JFrame {
 	protected Usuario clienteLogado;
@@ -27,11 +29,15 @@ public class Ventana extends JFrame {
 		if (clase.equals(PantallaEleccionPJ.class)) {
 			this.setContentPane(new PantallaEleccionPJ(this));
 		}
-		if (clase.equals(PantallaNivel.class)) {
-			this.setContentPane(new PantallaNivel());
-		}
+		
 		this.getContentPane().setVisible(true);
 	}
 	
-	
+	public void interfazCombate(Class<?> clase, Heroe heroe, Villano villano) {
+		this.getContentPane().setVisible(false);
+		if (clase.equals(PantallaNivel.class)) {
+			this.setContentPane(new PantallaNivel(heroe, villano));
+		}
+		this.getContentPane().setVisible(true);
+	}
 }

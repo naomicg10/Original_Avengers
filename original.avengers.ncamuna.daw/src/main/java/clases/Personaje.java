@@ -11,12 +11,12 @@ public class Personaje extends ElementoConImagen {
 	private byte vida;
 
 	public Personaje(String nombre, BufferedImage imagen, ArrayList<Carta> mazo, ArrayList<Carta> cartasEnMano,
-			byte defensa, BufferedImage imagen2, byte vida) {
+			byte defensa, byte vida) {
 		super(nombre, imagen);
 		this.mazo = mazo;
 		this.cartasEnMano = cartasEnMano;
 		this.defensa = defensa;
-		imagen = imagen2;
+		this.imagen = imagen;
 		this.vida = vida;
 	}
 
