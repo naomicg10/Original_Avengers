@@ -37,7 +37,7 @@ public class PantallaEleccionPJ extends JPanel {
 		// TODO Auto-generated method stub
 		super.paintComponent(g);
 		try {
-			BufferedImage fondo=ImageIO.read(new File("./FondoEleccion.jpg"));
+			BufferedImage fondo=ImageIO.read(new File(".\\Fotos\\FondoEleccion.jpg"));
 			g.drawImage(fondo, 0,0,this);
 			g.drawImage(fondo, 0, 0, this.getWidth(), this.getHeight(), new Color(0,0,0), null);
 		} catch (IOException e) {
@@ -398,7 +398,7 @@ public class PantallaEleccionPJ extends JPanel {
 
 		JLabel LabelTituloHeroes = new JLabel("");
 		try {
-			BufferedImage imagen=ImageIO.read(new File(".\\TituloHeroes.png"));
+			BufferedImage imagen=ImageIO.read(new File(".\\Fotos\\TituloHeroes.png"));
 			Image enIcono=imagen.getScaledInstance(46, 14, Image.SCALE_SMOOTH);
 			LabelTituloHeroes.setIcon(new ImageIcon(enIcono));
 		} catch (IOException e1) {
@@ -410,7 +410,7 @@ public class PantallaEleccionPJ extends JPanel {
 
 		JLabel LabelTituloVillanos = new JLabel("");
 		try {
-			BufferedImage imagen=ImageIO.read(new File(".\\TituloVillanos.png"));
+			BufferedImage imagen=ImageIO.read(new File(".\\Fotos\\TituloVillanos.png"));
 			Image enIcono=imagen.getScaledInstance(46, 14, Image.SCALE_SMOOTH);
 			LabelTituloVillanos.setIcon(new ImageIcon(enIcono));
 		} catch (IOException e1) {
