@@ -18,7 +18,7 @@ public class ElementoConNombre {
 
 	@Override
 	public String toString() {
-		return "ElementoConNombre [nombre=" + nombre + "]";
+		return "ElementoConNombre nombre= " + nombre;
 	}
 
 }

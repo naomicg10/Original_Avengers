@@ -10,13 +10,19 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.ImageIcon;
 import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.sql.SQLIntegrityConstraintViolationException;
 
 import javax.swing.JSpinner;
 import javax.swing.JComboBox;
+import javax.imageio.ImageIO;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.SwingConstants;
 
@@ -31,6 +37,20 @@ public class PantallaRegistro extends JPanel {
 	private JTextField textEmail;
 	private JPasswordField password;
 	private JTextField textFecha;
+	
+	@Override //Poner fondo en esta pantalla
+	protected void paintComponent(Graphics g) {
+		// TODO Auto-generated method stub
+		super.paintComponent(g);
+		try {
+			BufferedImage fondo=ImageIO.read(new File(".\\Fotos\\Thanos registro.jpg"));
+			g.drawImage(fondo, 0,0,this);
+			g.drawImage(fondo, 0, 0, this.getWidth(), this.getHeight(), new Color(0,0,0), null);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 
 	public PantallaRegistro(Ventana v) {
 		this.ventana = v;
@@ -118,10 +138,17 @@ public class PantallaRegistro extends JPanel {
 		lblContrasea.setBounds(91, 317, 127, 13);
 		add(lblContrasea);
 
-		JLabel lblNewLabel_3 = new JLabel("New label");
-		lblNewLabel_3.setIcon(new ImageIcon("C:\\Users\\naomi\\OneDrive\\Documentos\\Original_Avengers\\Titulo.png"));
-		lblNewLabel_3.setBounds(49, 99, 227, 51);
-		add(lblNewLabel_3);
+		JLabel LabelTitulo = new JLabel("");
+		try {
+			BufferedImage imagen=ImageIO.read(new File(".\\Fotos\\Titulo.png"));
+			Image enIcono=imagen.getScaledInstance(225, 40, Image.SCALE_SMOOTH);
+			LabelTitulo.setIcon(new ImageIcon(enIcono));
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		LabelTitulo.setBounds(49, 99, 227, 51);
+		add(LabelTitulo);
 
 		JLabel lblNewLabel_1 = new JLabel("Fecha Nacimiento");
 		lblNewLabel_1.setForeground(new Color(255, 255, 255));
@@ -133,13 +160,5 @@ public class PantallaRegistro extends JPanel {
 		textFecha.setBounds(91, 396, 127, 20);
 		add(textFecha);
 		textFecha.setColumns(10);
-
-		JLabel lblNewLabel_2 = new JLabel("New label");
-		lblNewLabel_2.setIcon(
-				new ImageIcon("C:\\Users\\naomi\\OneDrive\\Documentos\\Original_Avengers\\Thanos registro.jpg"));
-		lblNewLabel_2.setVerticalAlignment(SwingConstants.BOTTOM);
-		lblNewLabel_2.setHorizontalAlignment(SwingConstants.LEFT);
-		lblNewLabel_2.setBounds(0, 0, 1060, 596);
-		add(lblNewLabel_2);
 	}
 }

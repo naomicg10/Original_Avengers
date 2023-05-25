@@ -2,22 +2,26 @@ package clases;
 
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Personaje extends ElementoConImagen {
 	private ArrayList<Carta> mazo;
 	private ArrayList<Carta> cartasEnMano;
 	private byte defensa;
-	private BufferedImage imagen;
 	private byte vida;
 
-	public Personaje(String nombre, BufferedImage imagen, ArrayList<Carta> mazo, ArrayList<Carta> cartasEnMano,
+	public Personaje(String nombre, ArrayList<Carta> mazo, ArrayList<Carta> cartasEnMano,
 			byte defensa, byte vida) {
-		super(nombre, imagen);
+		super(nombre);
 		this.mazo = mazo;
 		this.cartasEnMano = cartasEnMano;
 		this.defensa = defensa;
-		this.imagen = imagen;
 		this.vida = vida;
+	}
+	
+	public Personaje(String nombre) {
+		super(nombre);
+	
 	}
 
 	public ArrayList<Carta> getMazo() {
@@ -44,13 +48,6 @@ public class Personaje extends ElementoConImagen {
 		this.defensa = defensa;
 	}
 
-	public BufferedImage getImagen() {
-		return imagen;
-	}
-
-	public void setImagen(BufferedImage imagen) {
-		this.imagen = imagen;
-	}
 
 	public byte getVida() {
 		return vida;
@@ -59,11 +56,15 @@ public class Personaje extends ElementoConImagen {
 	public void setVida(byte vida) {
 		this.vida = vida;
 	}
-
+	
+	public void recibirCarta(Carta carta) {
+        cartasEnMano.add(carta);
+    }
+	
+	    
 	@Override
 	public String toString() {
-		return "Personaje [mazo=" + mazo + ", cartasEnMano=" + cartasEnMano + ", defensa=" + defensa + ", imagen="
-				+ imagen + ", vida=" + vida + "]";
+		return "Personaje nombre=" + getNombre() + "\nmazo=" + mazo + "\ncartasEnMano=" + cartasEnMano + "\ndefensa=" + defensa + "\nvida=" + vida;
 	}
 
 }

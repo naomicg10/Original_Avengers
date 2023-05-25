@@ -1,12 +1,13 @@
 package clases;
 
 import java.awt.image.BufferedImage;
+import java.util.Random;
 
 public class CartaDefensiva extends Carta {
 	private byte defensa;
 
-	public CartaDefensiva(String nombre, BufferedImage imagen, String descripcion, byte defensa) {
-		super(nombre, imagen, descripcion);
+	public CartaDefensiva(String nombre, String descripcion, byte defensa) {
+		super(nombre, descripcion);
 		this.defensa = defensa;
 	}
 
@@ -17,10 +18,10 @@ public class CartaDefensiva extends Carta {
 	public void setDefensa(byte defensa) {
 		this.defensa = defensa;
 	}
-
+	
 	@Override
 	public String toString() {
-		return "CartaDefensiva [defensa=" + defensa + "]";
+		return "\nCartaDefensiva nombre="+ getNombre()+ " descripción=" + getDescripcion() + " defensa=" + defensa;
 	}
 
 }

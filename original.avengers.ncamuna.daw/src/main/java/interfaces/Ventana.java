@@ -1,20 +1,29 @@
 package interfaces;
 
+import java.awt.BorderLayout;
+
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 
 import clases.Heroe;
+import clases.Personaje;
 import clases.Usuario;
 import clases.Villano;
 
 public class Ventana extends JFrame {
 	protected Usuario clienteLogado;
 	protected Usuario clienteRegistrado;
+	protected Personaje personaje;
+	
 	public Ventana() {
 		this.setSize(1060, 620);
 		this.setTitle("Original Avengers");
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setLocationRelativeTo(null);
 		this.setContentPane(new PantallaLogin(this));
+		this.setIconImage(new ImageIcon("./AvengersIcon.png").getImage());
 		this.setVisible(true);
 	}
 
@@ -36,8 +45,9 @@ public class Ventana extends JFrame {
 	public void interfazCombate(Class<?> clase, Heroe heroe, Villano villano) {
 		this.getContentPane().setVisible(false);
 		if (clase.equals(PantallaNivel.class)) {
-			this.setContentPane(new PantallaNivel(heroe, villano));
+			this.setContentPane(new PantallaNivel(heroe, villano,(this)));
 		}
 		this.getContentPane().setVisible(true);
 	}
+	
 }

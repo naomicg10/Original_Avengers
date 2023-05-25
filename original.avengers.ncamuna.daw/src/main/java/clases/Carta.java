@@ -1,12 +1,13 @@
 package clases;
 
 import java.awt.image.BufferedImage;
+import java.util.Random;
 
 public class Carta extends ElementoConImagen {
 	private String descripcion;
 
-	public Carta(String nombre, BufferedImage imagen, String descripcion) {
-		super(nombre, imagen);
+	public Carta(String nombre, String descripcion) {
+		super(nombre);
 		this.descripcion = descripcion;
 	}
 
@@ -20,7 +21,7 @@ public class Carta extends ElementoConImagen {
 
 	@Override
 	public String toString() {
-		return "Carta [descripcion=" + descripcion + "]";
+		return "Carta descripcion=" + descripcion;
 	}
 
 }
