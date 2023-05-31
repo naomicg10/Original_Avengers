@@ -16,6 +16,7 @@ public class Ventana extends JFrame {
 	protected Usuario clienteLogado;
 	protected Usuario clienteRegistrado;
 	protected Personaje personaje;
+	protected Personaje personaje2;
 	
 	public Ventana() {
 		this.setSize(1060, 620);
@@ -38,16 +39,19 @@ public class Ventana extends JFrame {
 		if (clase.equals(PantallaEleccionPJ.class)) {
 			this.setContentPane(new PantallaEleccionPJ(this));
 		}
+		if(clase.equals(PantallaNivel.class)) {
+			this.setContentPane(new PantallaNivel(this));
+		}
 		
 		this.getContentPane().setVisible(true);
 	}
 	
-	public void interfazCombate(Class<?> clase, Heroe heroe, Villano villano) {
-		this.getContentPane().setVisible(false);
-		if (clase.equals(PantallaNivel.class)) {
-			this.setContentPane(new PantallaNivel(heroe, villano,(this)));
-		}
-		this.getContentPane().setVisible(true);
-	}
+//	public void interfazCombate(Class<?> clase, Heroe heroe, Villano villano) {
+//		this.getContentPane().setVisible(false);
+//		if (clase.equals(PantallaNivel.class)) {
+//			this.setContentPane(new PantallaNivel(heroe, villano,(this)));
+//		}
+//		this.getContentPane().setVisible(true);
+//	}
 	
 }

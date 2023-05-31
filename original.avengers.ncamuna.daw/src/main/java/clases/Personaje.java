@@ -64,7 +64,7 @@ public class Personaje extends ElementoConImagen {
 	    
 	@Override
 	public String toString() {
-		return "Personaje nombre=" + getNombre() + "\nmazo=" + mazo + "\ncartasEnMano=" + cartasEnMano + "\ndefensa=" + defensa + "\nvida=" + vida;
+		return "Personaje: Nombre: " + getNombre() + "\nMazo: " + mazo + "\nCartas en Mano: " + cartasEnMano + "\nDefensa: " + defensa + "\nVida: " + vida;
 	}
 
 }

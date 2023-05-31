@@ -38,9 +38,7 @@ public class PantallaNivel extends JPanel {
 		}
 	}
 	
-	public PantallaNivel(Heroe heroe, Villano villano, Ventana v) {
-		this.heroe = heroe;
-		this.villano = villano;
+	public PantallaNivel(Ventana v) {
 		this.ventana=v;
 		setLayout(null);
 		
@@ -54,19 +52,8 @@ public class PantallaNivel extends JPanel {
 		textArea.setText("hola");
 		textArea.append("\nmundo");
 		
-		System.out.println(Heroe.cargarCapipaleta());
-		System.out.println(Heroe.cargarIronMan());
-		System.out.println(Heroe.cargarThor());
-		System.out.println(Heroe.cargarHulk());
-		System.out.println(Heroe.cargarViudaNegra());
-		System.out.println(Heroe.cargarOjoHalcon());
-		
-		System.out.println(Villano.cargarLoki());
-		System.out.println(Villano.cargarUltron());
-		System.out.println(Villano.cargarZemo());
-		System.out.println(Villano.cargarEbony());
-		System.out.println(Villano.cargarKang());
-		System.out.println(Villano.cargarThanos());
+		System.out.println(ventana.personaje);
+		System.out.println(ventana.personaje2);
 		
 //		while(heroe.getVida()!=0&&villano.getVida()!=0) {
 //			

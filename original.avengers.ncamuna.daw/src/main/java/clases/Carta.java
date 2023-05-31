@@ -6,8 +6,15 @@ import java.util.Random;
 public class Carta extends ElementoConImagen {
 	private String descripcion;
 
+	public Carta(String nombre, String descripcion, BufferedImage imagen) {
+		super(nombre, imagen);
+		this.setNombre(nombre);
+		this.descripcion = descripcion;
+	}
+	
 	public Carta(String nombre, String descripcion) {
 		super(nombre);
+		this.setNombre(nombre);
 		this.descripcion = descripcion;
 	}
 
@@ -21,7 +28,7 @@ public class Carta extends ElementoConImagen {
 
 	@Override
 	public String toString() {
-		return "Carta descripcion=" + descripcion;
+		return "Carta: descripcion: " + descripcion;
 	}
 
 }

@@ -9,15 +9,17 @@ import javax.imageio.ImageIO;
 public class ElementoConImagen extends ElementoConNombre {
 	private BufferedImage imagen;
 
+	public ElementoConImagen(String nombre, BufferedImage imagen) {
+		super(nombre);
+			this.setNombre(nombre);
+			this.imagen = imagen;
+	}
+	
 	public ElementoConImagen(String nombre) {
 		super(nombre);
-		try {
-			this.imagen = ImageIO.read(new File("C:\\Users\\naomi\\OneDrive\\Documentos\\Original_Avengers\\Ironman.png"));
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		this.setNombre(nombre);
 	}
+	
 
 	public BufferedImage getImagen() {
 		return imagen;

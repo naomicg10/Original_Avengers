@@ -125,21 +125,22 @@ public class PantallaEleccionPJ extends JPanel {
 		LabelOH.setBounds(821, 104, 83, 172);
 		add(LabelOH);
 		
-		ArrayList <Villano> villanos = Villano.getVillanos();
+		final ArrayList <Villano> villanos = Villano.getVillanos();
 		Villano villano = Villano.villanoAleatorio(villanos);
-		ArrayList <Heroe> heroes = Heroe.getHeroes();
+		final ArrayList <Heroe> heroes = Heroe.getHeroes();
 		Heroe heroe = Heroe.heroeAleatorio(heroes);  
-//		((Heroe)ventana.personaje).getHeroes();
 		
 		JRadioButton RadioButton_CA = new JRadioButton("Capitán America");
 		RadioButton_CA.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				Heroe.cargarCapipaleta();
+				ventana.personaje=Heroe.cargarCapipaleta();
+				ventana.personaje2=Villano.villanoAleatorio(villanos);
+				ventana.cambiarAPantalla(PantallaNivel.class);
 			}
 		});
 		Heroe capipaleta = Heroe.cargarCapipaleta();
-		abrirVentana(RadioButton_CA, ventana, capipaleta, villano);
+//		abrirVentana(RadioButton_CA, ventana, capipaleta, villano);
 		RadioButton_CA.setFont(new Font("Tahoma", Font.BOLD, 11));
 		RadioButton_CA.setForeground(new Color(255, 255, 255));
 		RadioButton_CA.setBounds(251, 278, 130, 23);
@@ -150,12 +151,12 @@ public class PantallaEleccionPJ extends JPanel {
 		RadioButton_IM.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				Heroe.cargarIronMan();
+				ventana.personaje=Heroe.cargarIronMan();
+				ventana.personaje2=Villano.villanoAleatorio(villanos);
+				ventana.cambiarAPantalla(PantallaNivel.class);
 			}
 		});
-//		Heroe ironman = ((Heroe)ventana.personaje).cargarIronMan();
-		Heroe ironman = Heroe.cargarIronMan();
-		abrirVentana(RadioButton_IM, ventana, ironman, villano);
+//		abrirVentana(RadioButton_IM, ventana, ironman, villano);
 		RadioButton_IM.setFont(new Font("Tahoma", Font.BOLD, 11));
 		RadioButton_IM.setForeground(new Color(255, 250, 250));
 		RadioButton_IM.setBounds(153, 278, 96, 23);
@@ -166,11 +167,12 @@ public class PantallaEleccionPJ extends JPanel {
 		RadioButton_BB.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				Heroe.cargarThor();
+				ventana.personaje=Heroe.cargarThor();
+				ventana.personaje2=Villano.villanoAleatorio(villanos);
+				ventana.cambiarAPantalla(PantallaNivel.class);
 			}
 		});
-		Heroe thor = Heroe.cargarThor();
-		abrirVentana(RadioButton_BB, ventana, thor, villano);
+//		abrirVentana(RadioButton_BB, ventana, thor, villano);
 		RadioButton_BB.setFont(new Font("Tahoma", Font.BOLD, 11));
 		RadioButton_BB.setForeground(new Color(255, 255, 255));
 		RadioButton_BB.setBounds(419, 280, 68, 23);
@@ -181,11 +183,12 @@ public class PantallaEleccionPJ extends JPanel {
 		RadioButton_H.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				Heroe.cargarHulk();
+				ventana.personaje=Heroe.cargarHulk();
+				ventana.personaje2=Villano.villanoAleatorio(villanos);
+				ventana.cambiarAPantalla(PantallaNivel.class);
 			}
 		});
-		Heroe hulk = Heroe.cargarHulk();
-		abrirVentana(RadioButton_H, ventana, hulk, villano);
+//		abrirVentana(RadioButton_H, ventana, hulk, villano);
 		RadioButton_H.setFont(new Font("Tahoma", Font.BOLD, 11));
 		RadioButton_H.setForeground(new Color(255, 255, 255));
 		RadioButton_H.setBounds(566, 280, 68, 23);
@@ -196,11 +199,12 @@ public class PantallaEleccionPJ extends JPanel {
 		RadioButton_VN.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				Heroe.cargarViudaNegra();
+				ventana.personaje=Heroe.cargarViudaNegra();
+				ventana.personaje2=Villano.villanoAleatorio(villanos);
+				ventana.cambiarAPantalla(PantallaNivel.class);
 			}
 		});
-		Heroe viudaNegra = Heroe.cargarViudaNegra();
-		abrirVentana(RadioButton_VN, ventana, viudaNegra, villano);
+//		abrirVentana(RadioButton_VN, ventana, viudaNegra, villano);
 		RadioButton_VN.setFont(new Font("Tahoma", Font.BOLD, 11));
 		RadioButton_VN.setForeground(new Color(255, 255, 255));
 		RadioButton_VN.setBounds(695, 278, 109, 23);
@@ -211,11 +215,12 @@ public class PantallaEleccionPJ extends JPanel {
 		RadioButton_OH.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				Heroe.cargarOjoHalcon();
+				ventana.personaje=Heroe.cargarOjoHalcon();
+				ventana.personaje2=Villano.villanoAleatorio(villanos);
+				ventana.cambiarAPantalla(PantallaNivel.class);
 			}
 		});
-		Heroe ojoHalcon = Heroe.cargarOjoHalcon();
-		abrirVentana(RadioButton_OH, ventana, ojoHalcon, villano);
+//		abrirVentana(RadioButton_OH, ventana, ojoHalcon, villano);
 		RadioButton_OH.setFont(new Font("Tahoma", Font.BOLD, 11));
 		RadioButton_OH.setForeground(new Color(255, 255, 255));
 		RadioButton_OH.setBounds(820, 278, 109, 23);
@@ -260,8 +265,8 @@ public class PantallaEleccionPJ extends JPanel {
 
 		JLabel LabelEM = new JLabel("");
 		try {
-			BufferedImage imagen=ImageIO.read(new File(".\\Fotos\\EbonyMaw.png"));
-			Image enIcono=imagen.getScaledInstance(105, 210, Image.SCALE_SMOOTH);
+			BufferedImage imagen=ImageIO.read(new File(".\\Fotos\\Bucky.png"));
+			Image enIcono=imagen.getScaledInstance(80, 165, Image.SCALE_SMOOTH);
 			LabelEM.setIcon(new ImageIcon(enIcono));
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
@@ -310,11 +315,12 @@ public class PantallaEleccionPJ extends JPanel {
 		RadioButton_L.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				Villano.cargarLoki();
+				ventana.personaje=Villano.cargarLoki();
+				ventana.personaje2=Heroe.heroeAleatorio(heroes);
+				ventana.cambiarAPantalla(PantallaNivel.class);
 			}
 		});
-		Villano loki = Villano.cargarLoki();
-		abrirVentana(RadioButton_L, ventana, heroe, loki);
+//		abrirVentana(RadioButton_L, ventana, heroe, loki);
 		RadioButton_L.setFont(new Font("Tahoma", Font.BOLD, 11));
 		RadioButton_L.setForeground(new Color(255, 255, 255));
 		RadioButton_L.setBounds(168, 530, 49, 23);
@@ -325,11 +331,12 @@ public class PantallaEleccionPJ extends JPanel {
 		RadioButton_U.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				Villano.cargarUltron();
+				ventana.personaje=Villano.cargarUltron();
+				ventana.personaje2=Heroe.heroeAleatorio(heroes);
+				ventana.cambiarAPantalla(PantallaNivel.class);
 			}
 		});
-		Villano ultron = Villano.cargarUltron();
-		abrirVentana(RadioButton_U, ventana, heroe, ultron);
+//		abrirVentana(RadioButton_U, ventana, heroe, ultron);
 		RadioButton_U.setFont(new Font("Tahoma", Font.BOLD, 11));
 		RadioButton_U.setForeground(new Color(255, 255, 255));
 		RadioButton_U.setBounds(278, 530, 62, 23);
@@ -340,26 +347,28 @@ public class PantallaEleccionPJ extends JPanel {
 		RadioButton_BZ.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				Villano.cargarZemo();
+				ventana.personaje=Villano.cargarZemo();
+				ventana.personaje2=Heroe.heroeAleatorio(heroes);
+				ventana.cambiarAPantalla(PantallaNivel.class);
 			}
 		});
-		Villano zemo = Villano.cargarZemo();
-		abrirVentana(RadioButton_BZ, ventana, heroe, zemo);
+//		abrirVentana(RadioButton_BZ, ventana, heroe, zemo);
 		RadioButton_BZ.setFont(new Font("Tahoma", Font.BOLD, 11));
 		RadioButton_BZ.setForeground(new Color(255, 255, 255));
 		RadioButton_BZ.setBounds(399, 530, 110, 23);
 		RadioButton_BZ.setContentAreaFilled(false);
 		add(RadioButton_BZ);
 
-		JRadioButton RadioButton_EM = new JRadioButton("Ebony Maw");
+		JRadioButton RadioButton_EM = new JRadioButton("Soldado de Invierno");
 		RadioButton_EM.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				Villano.cargarZemo();
+				ventana.personaje=Villano.cargarSoldadoInvierno();
+				ventana.personaje2=Heroe.heroeAleatorio(heroes);
+				ventana.cambiarAPantalla(PantallaNivel.class);
 			}
 		});
-		Villano ebony = Villano.cargarEbony();
-		abrirVentana(RadioButton_EM, ventana, heroe, ebony);
+//		abrirVentana(RadioButton_EM, ventana, heroe, ebony);
 		RadioButton_EM.setFont(new Font("Tahoma", Font.BOLD, 11));
 		RadioButton_EM.setForeground(new Color(255, 255, 255));
 		RadioButton_EM.setBounds(566, 530, 93, 23);
@@ -370,11 +379,12 @@ public class PantallaEleccionPJ extends JPanel {
 		RadioButton_KC.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				Villano.cargarKang();
+				ventana.personaje=Villano.cargarKang();
+				ventana.personaje2=Heroe.heroeAleatorio(heroes);
+				ventana.cambiarAPantalla(PantallaNivel.class);
 			}
 		});
-		Villano kang = Villano.cargarKang();
-		abrirVentana(RadioButton_KC, ventana, heroe, kang);
+//		abrirVentana(RadioButton_KC, ventana, heroe, kang);
 		RadioButton_KC.setFont(new Font("Tahoma", Font.BOLD, 11));
 		RadioButton_KC.setForeground(new Color(255, 255, 255));
 		RadioButton_KC.setBounds(681, 530, 148, 23);
@@ -385,11 +395,12 @@ public class PantallaEleccionPJ extends JPanel {
 		RadioButton_T.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				Villano.cargarThanos();
+				ventana.personaje=Villano.cargarThanos();
+				ventana.personaje2=Heroe.heroeAleatorio(heroes);
+				ventana.cambiarAPantalla(PantallaNivel.class);
 			}
 		});
-		Villano thanos = Villano.cargarThanos();
-		abrirVentana(RadioButton_T, ventana, heroe, thanos);
+//		abrirVentana(RadioButton_T, ventana, heroe, thanos);
 		RadioButton_T.setFont(new Font("Tahoma", Font.BOLD, 11));
 		RadioButton_T.setForeground(new Color(255, 255, 255));
 		RadioButton_T.setBounds(850, 530, 68, 23);
@@ -421,25 +432,25 @@ public class PantallaEleccionPJ extends JPanel {
 		add(LabelTituloVillanos);
 	}
 
-	private static void abrirVentana(final JRadioButton radioButton, final Ventana ventana, Heroe heroe, Villano villano) {
-		radioButton.addItemListener(new ItemListener() {
-			public void itemStateChanged(ItemEvent e) {
-				if (e.getStateChange() == ItemEvent.SELECTED) {
-					ImageIcon icono = new ImageIcon(
-							"C:\\Users\\naomi\\OneDrive\\Documentos\\Original_Avengers\\AvengersIcon.png");
-					int opcion = JOptionPane.showOptionDialog(radioButton, "¿Quieres este personaje?", "Confirmación",
-							JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, icono, null, null);
-
-					if (opcion == JOptionPane.YES_OPTION) {
-						System.out.println("Has hecho clic en el botón 'Aceptar'");
-						ventana.interfazCombate(PantallaNivel.class, null, null);
-					} else if (opcion == JOptionPane.NO_OPTION) {
-						System.out.println("Has hecho clic en el botón 'Cancelar'");
-					}
-				}
-			}
-		});
-	}
+//	private static void abrirVentana(final JRadioButton radioButton, final Ventana ventana, Heroe heroe, Villano villano) {
+//		radioButton.addItemListener(new ItemListener() {
+//			public void itemStateChanged(ItemEvent e) {
+//				if (e.getStateChange() == ItemEvent.SELECTED) {
+//					ImageIcon icono = new ImageIcon(
+//							"C:\\Users\\naomi\\OneDrive\\Documentos\\Original_Avengers\\AvengersIcon.png");
+//					int opcion = JOptionPane.showOptionDialog(radioButton, "¿Quieres este personaje?", "Confirmación",
+//							JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, icono, null, null);
+//
+//					if (opcion == JOptionPane.YES_OPTION) {
+//						System.out.println("Has hecho clic en el botón 'Aceptar'");
+//						ventana.interfazCombate(PantallaNivel.class, null, null);
+//					} else if (opcion == JOptionPane.NO_OPTION) {
+//						System.out.println("Has hecho clic en el botón 'Cancelar'");
+//					}
+//				}
+//			}
+//		});
+//	}
 	
 }
 	

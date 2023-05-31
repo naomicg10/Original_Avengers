@@ -6,8 +6,9 @@ import java.util.Random;
 public class CartaDefensiva extends Carta {
 	private byte defensa;
 
-	public CartaDefensiva(String nombre, String descripcion, byte defensa) {
-		super(nombre, descripcion);
+	public CartaDefensiva(String nombre, String descripcion, byte defensa, BufferedImage imagen) {
+		super(nombre, descripcion, imagen);
+		this.setImagen(imagen);
 		this.defensa = defensa;
 	}
 
@@ -21,7 +22,7 @@ public class CartaDefensiva extends Carta {
 	
 	@Override
 	public String toString() {
-		return "\nCartaDefensiva nombre="+ getNombre()+ " descripción=" + getDescripcion() + " defensa=" + defensa;
+		return "\nCartaDefensiva: Nombre: "+ getNombre()+ " Descripción: " + getDescripcion() + " Defensa: " + defensa;
 	}
 
 }

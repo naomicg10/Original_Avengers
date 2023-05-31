@@ -5,8 +5,9 @@ import java.awt.image.BufferedImage;
 public class CartaOfensiva extends Carta {
 	private byte daño;
 
-	public CartaOfensiva(String nombre, String descripcion, byte daño) {
-		super(nombre, descripcion);
+	public CartaOfensiva(String nombre, String descripcion, byte daño, BufferedImage imagen) {
+		super(nombre, descripcion, imagen);
+		this.setImagen(imagen);
 		this.daño = daño;
 	}
 
@@ -20,7 +21,7 @@ public class CartaOfensiva extends Carta {
 
 	@Override
 	public String toString() {
-		return "\nCartaOfensiva nombre="+ getNombre()+ " descripción=" + getDescripcion() + " daño=" + daño;
+		return "\nCartaOfensiva: Nombre: "+ getNombre()+ " Descripción: " + getDescripcion() + " Daño: " + daño;
 	}
 
 }
