@@ -15,8 +15,15 @@ public class Personaje extends ElementoConImagen {
 		super(nombre);
 		this.mazo = mazo;
 		this.cartasEnMano = cartasEnMano;
-		this.defensa = defensa;
-		this.vida = vida;
+		this.setDefensa(defensa);;
+		this.setVida(vida);
+	}
+	
+	public Personaje(String nombre, ArrayList<Carta> mazo, byte defensa, byte vida) {
+		super(nombre);
+		this.mazo = mazo;
+		this.setDefensa(defensa);;
+		this.setVida(vida);
 	}
 	
 	public Personaje(String nombre) {
@@ -45,7 +52,12 @@ public class Personaje extends ElementoConImagen {
 	}
 
 	public void setDefensa(byte defensa) {
-		this.defensa = defensa;
+		if(defensa<=0) {
+			this.defensa=0;
+		}else {
+			this.defensa = defensa;
+		}
+	
 	}
 
 
@@ -54,7 +66,12 @@ public class Personaje extends ElementoConImagen {
 	}
 
 	public void setVida(byte vida) {
-		this.vida = vida;
+		if(vida<=0) {
+			this.vida=0;
+		}else {
+			this.vida = vida;
+		}
+	
 	}
 	
 	public void recibirCarta(Carta carta) {
@@ -64,7 +81,7 @@ public class Personaje extends ElementoConImagen {
 	    
 	@Override
 	public String toString() {
-		return "Personaje: Nombre: " + getNombre() + "\nMazo: " + mazo + "\nCartas en Mano: " + cartasEnMano + "\nDefensa: " + defensa + "\nVida: " + vida;
+		return "Personaje: Nombre: " + getNombre() + "\nMazo: " + mazo + "\nDefensa: " + defensa + "\nVida: " + vida;
 	}
 
 }

@@ -18,7 +18,14 @@ public class Villano extends Personaje{
 		this.setCartasEnMano(cartasEnMano);
 		this.setDefensa(defensa);
 		this.setVida(vida);
-		// TODO Auto-generated constructor stub
+	}
+	
+	public Villano(String nombre, ArrayList<Carta> mazo, byte defensa, byte vida) {
+		super(nombre, mazo, defensa, vida);
+		this.setNombre(nombre);
+		this.setMazo(mazo);
+		this.setDefensa(defensa);
+		this.setVida(vida);
 	}
 	
 	public static ArrayList <Villano> getVillanos(){
@@ -55,14 +62,14 @@ public class Villano extends Personaje{
 		}catch(IOException e) {
 			e.printStackTrace();
 		}
-		ArrayList<Carta> cartasEnMano = new ArrayList<Carta>();
-		Random r= new Random();
-		for (int i = 0; i < 3; i++) {
-	    int randomNumber = r.nextInt(mazo.size());
-	    Carta randomElement = mazo.get(randomNumber);
-	    cartasEnMano.add(randomElement);
-		}
-		Villano loki = new Villano("Loki", mazo, cartasEnMano, (byte) 30, (byte) 100);
+//		ArrayList<Carta> cartasEnMano = new ArrayList<Carta>();
+//		Random r= new Random();
+//		for (int i = 0; i < 3; i++) {
+//	    int randomNumber = r.nextInt(mazo.size());
+//	    Carta randomElement = mazo.get(randomNumber);
+//	    cartasEnMano.add(randomElement);
+//		}
+		Villano loki = new Villano("Loki", mazo, /*cartasEnMano,*/ (byte) 30, (byte) 100);
 		return loki;
 	}
 	
@@ -82,14 +89,7 @@ public class Villano extends Personaje{
 		}catch(IOException e) {
 			e.printStackTrace();
 		}
-		ArrayList<Carta> cartasEnMano = new ArrayList<Carta>();		
-		Random r= new Random();
-		for (int i = 0; i < 3; i++) {
-		int randomNumber = r.nextInt(mazo.size());
-		Carta randomElement = mazo.get(randomNumber);
-		cartasEnMano.add(randomElement);
-		}
-		Villano ultron = new Villano("Ultrón", mazo, cartasEnMano, (byte) 60, (byte) 100);
+		Villano ultron = new Villano("Ultrón", mazo, (byte) 60, (byte) 100);
 		return ultron;
 	}
 	
@@ -109,14 +109,7 @@ public class Villano extends Personaje{
 		}catch(IOException e) {
 			e.printStackTrace();
 		}
-		ArrayList<Carta> cartasEnMano = new ArrayList<Carta>();
-		Random r= new Random();
-		for (int i = 0; i < 3; i++) {
-		int randomNumber = r.nextInt(mazo.size());
-		Carta randomElement = mazo.get(randomNumber);
-		cartasEnMano.add(randomElement);
-		}
-		Villano zemo = new Villano("Barón Zemo", mazo, cartasEnMano, (byte) 60, (byte) 100);
+		Villano zemo = new Villano("Barón Zemo", mazo, (byte) 60, (byte) 100);
 		return zemo;
 	}
 	
@@ -136,14 +129,7 @@ public class Villano extends Personaje{
 		}catch(IOException e) {
 			e.printStackTrace();
 		}
-		ArrayList<Carta> cartasEnMano = new ArrayList<Carta>();
-		Random r= new Random();
-		for (int i = 0; i < 3; i++) {
-		int randomNumber = r.nextInt(mazo.size());
-		Carta randomElement = mazo.get(randomNumber);
-		cartasEnMano.add(randomElement);
-		}
-		Villano soldadoInvierno = new Villano("Soldado de Invierno", mazo, cartasEnMano, (byte) 60, (byte) 100);
+		Villano soldadoInvierno = new Villano("Soldado de Invierno", mazo, (byte) 60, (byte) 100);
 		return soldadoInvierno;
 	}
 	
@@ -163,14 +149,7 @@ public class Villano extends Personaje{
 		}catch(IOException e) {
 			e.printStackTrace();
 		}
-		ArrayList<Carta> cartasEnMano = new ArrayList<Carta>();
-		Random r= new Random();
-		for (int i = 0; i < 3; i++) {
-		int randomNumber = r.nextInt(mazo.size());
-		Carta randomElement = mazo.get(randomNumber);
-		cartasEnMano.add(randomElement);
-		}
-		Villano kang = new Villano("Kang El Conquistador", mazo, cartasEnMano, (byte) 60, (byte) 100);
+		Villano kang = new Villano("Kang El Conquistador", mazo, (byte) 60, (byte) 100);
 		return kang;
 	}
 	
@@ -190,14 +169,7 @@ public class Villano extends Personaje{
 		}catch(IOException e) {
 			e.printStackTrace();
 		}
-		ArrayList<Carta> cartasEnMano = new ArrayList<Carta>();
-		Random r= new Random();
-		for (int i = 0; i < 3; i++) {
-		int randomNumber = r.nextInt(mazo.size());
-		Carta randomElement = mazo.get(randomNumber);
-		cartasEnMano.add(randomElement);
-		}
-		Villano thanos = new Villano("Thanos", mazo, cartasEnMano, (byte) 60, (byte) 120);
+		Villano thanos = new Villano("Thanos", mazo, (byte) 60, (byte) 120);
 		return thanos;
 	}
 

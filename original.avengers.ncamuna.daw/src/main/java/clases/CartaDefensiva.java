@@ -9,7 +9,7 @@ public class CartaDefensiva extends Carta {
 	public CartaDefensiva(String nombre, String descripcion, byte defensa, BufferedImage imagen) {
 		super(nombre, descripcion, imagen);
 		this.setImagen(imagen);
-		this.defensa = defensa;
+		this.setDefensa(defensa);
 	}
 
 	public byte getDefensa() {
@@ -17,7 +17,12 @@ public class CartaDefensiva extends Carta {
 	}
 
 	public void setDefensa(byte defensa) {
-		this.defensa = defensa;
+		if(defensa<=0) {
+			this.defensa=0;
+		}else {
+			this.defensa = defensa;
+		}
+
 	}
 	
 	@Override

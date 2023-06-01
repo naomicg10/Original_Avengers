@@ -20,6 +20,14 @@ public class Heroe extends Personaje{
 		this.setVida(vida);
 	}
 	
+	public Heroe(String nombre, ArrayList<Carta> mazo, byte defensa, byte vida) {
+		super(nombre, mazo, defensa, vida);
+		this.setNombre(nombre);
+		this.setMazo(mazo);
+		this.setDefensa(defensa);
+		this.setVida(vida);
+	}
+
 	public static ArrayList <Heroe> getHeroes(){
 		ArrayList<Heroe> heroes = new ArrayList<Heroe>();
 		heroes.add(cargarCapipaleta());
@@ -54,14 +62,7 @@ public class Heroe extends Personaje{
 		}catch(IOException e) {
 			e.printStackTrace();
 		}
-		ArrayList<Carta> cartasEnMano = new ArrayList<Carta>();
-		Random r= new Random();
-		for (int i = 0; i < 3; i++) {
-		int randomNumber = r.nextInt(mazo.size());
-		Carta randomElement = mazo.get(randomNumber);
-		cartasEnMano.add(randomElement);
-		}
-		Heroe capipaleta = new Heroe("Capitán America", mazo, cartasEnMano, (byte) 70, (byte) 100);
+		Heroe capipaleta = new Heroe("Capitán America", mazo, (byte) 70, (byte) 100);
 		return capipaleta;
 	}
 	
@@ -81,14 +82,7 @@ public class Heroe extends Personaje{
 		}catch(IOException e) {
 			e.printStackTrace();
 		}
-		ArrayList<Carta> cartasEnMano = new ArrayList<Carta>();
-		Random r= new Random();
-		for (int i = 0; i < 3; i++) {
-		int randomNumber = r.nextInt(mazo.size());
-		Carta randomElement = mazo.get(randomNumber);
-		cartasEnMano.add(randomElement);
-		}
-		Heroe ironman = new Heroe("Iron Man", mazo, cartasEnMano, (byte) 70, (byte) 100);
+		Heroe ironman = new Heroe("Iron Man", mazo, (byte) 70, (byte) 100);
 		return ironman;
 	}
 	
@@ -108,14 +102,7 @@ public class Heroe extends Personaje{
 		}catch(IOException e) {
 			e.printStackTrace();
 		}
-		ArrayList<Carta> cartasEnMano = new ArrayList<Carta>();
-		Random r= new Random();
-		for (int i = 0; i < 3; i++) {
-		int randomNumber = r.nextInt(mazo.size());
-		Carta randomElement = mazo.get(randomNumber);
-		cartasEnMano.add(randomElement);
-		}
-		Heroe thor = new Heroe("Thor", mazo, cartasEnMano, (byte) 70, (byte) 100);
+		Heroe thor = new Heroe("Thor", mazo, (byte) 70, (byte) 100);
 		return thor;
 	}
 	
@@ -123,7 +110,7 @@ public class Heroe extends Personaje{
 		ArrayList<Carta> mazo = new ArrayList<Carta>();
 		try {
 			CartaOfensiva carta1 = new CartaOfensiva("Lanzamiento de coche", "Lanza un coche al enemigo", (byte)13, ImageIO.read(new File(".\\Fotos\\LanzamientoCoche.png")));
-			CartaOfensiva carta2 = new CartaOfensiva("Lanzamiento de Pavimento", "Lanza el pavimento arrancado del suelo al enemigo", (byte)12, ImageIO.read(new File(".\\Fotos\\LanzamientoEscudo.png")));
+			CartaOfensiva carta2 = new CartaOfensiva("Lanzamiento de Pavimento", "Lanza el pavimento arrancado del suelo al enemigo", (byte)12, ImageIO.read(new File(".\\Fotos\\LanzamientoPavimento.png")));
 			CartaOfensiva carta3 = new CartaOfensiva("Puñetazo Brutal", "Le da un puñetazo brutal al enemigo", (byte)17, ImageIO.read(new File(".\\Fotos\\PuñetazoBrutal.png")));
 			CartaDefensiva carta4 = new CartaDefensiva("Escudo Enfurecimiento", "Se enfurece por el ataque enemigo y no le afecta ningun daño", (byte)10, ImageIO.read(new File(".\\Fotos\\EscudoEnfurecimiento.png")));
 			CartaDefensiva carta5 = new CartaDefensiva("Escudo Pavimento", "Se cubre con el pavimento que ha arrancado del suelo", (byte)5, ImageIO.read(new File(".\\Fotos\\EscudoPavimento.png")));
@@ -135,14 +122,7 @@ public class Heroe extends Personaje{
 		}catch(IOException e) {
 			e.printStackTrace();
 		}
-		ArrayList<Carta> cartasEnMano = new ArrayList<Carta>();
-		Random r= new Random();
-		for (int i = 0; i < 3; i++) {
-		int randomNumber = r.nextInt(mazo.size());
-		Carta randomElement = mazo.get(randomNumber);
-		cartasEnMano.add(randomElement);
-		}
-		Heroe hulk = new Heroe("Hulk", mazo, cartasEnMano, (byte) 80, (byte) 120);
+		Heroe hulk = new Heroe("Hulk", mazo, (byte) 80, (byte) 120);
 		return hulk;
 	}
 	
@@ -162,14 +142,7 @@ public class Heroe extends Personaje{
 		}catch(IOException e) {
 			e.printStackTrace();
 		}
-		ArrayList<Carta> cartasEnMano = new ArrayList<Carta>();
-		Random r= new Random();
-		for (int i = 0; i < 3; i++) {
-		int randomNumber = r.nextInt(mazo.size());
-		Carta randomElement = mazo.get(randomNumber);
-		cartasEnMano.add(randomElement);
-		}
-		Heroe viudaNegra = new Heroe("Viuda Negra", mazo, cartasEnMano, (byte) 50, (byte) 100);
+		Heroe viudaNegra = new Heroe("Viuda Negra", mazo, (byte) 50, (byte) 100);
 		return viudaNegra;
 	}
 	
@@ -189,14 +162,7 @@ public class Heroe extends Personaje{
 		}catch(IOException e) {
 			e.printStackTrace();
 		}
-		ArrayList<Carta> cartasEnMano = new ArrayList<Carta>();
-		Random r= new Random();
-		for (int i = 0; i < 3; i++) {
-		int randomNumber = r.nextInt(mazo.size());
-		Carta randomElement = mazo.get(randomNumber);
-		cartasEnMano.add(randomElement);
-		}
-		Heroe ojoHalcon = new Heroe("Ojo de Halcón", mazo, cartasEnMano, (byte) 50, (byte) 100);
+		Heroe ojoHalcon = new Heroe("Ojo de Halcón", mazo, (byte) 50, (byte) 100);
 		return ojoHalcon;
 	}
 
