@@ -73,7 +73,7 @@ public class PantallaNivel extends JPanel {
 
 		Random r = new Random();
 		byte azar = (byte) r.nextInt(0, 5);
-		byte numeroTocado = azar;
+		final byte numeroTocado = azar;
 		JLabel Carta2 = new JLabel("");
 		Image escala = ventana.personaje.getMazo().get(azar).getImagen().getScaledInstance(140, 150, 0);
 		Carta2.setIcon(new ImageIcon(escala));
@@ -137,9 +137,9 @@ public class PantallaNivel extends JPanel {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if (btnCarta2.isEnabled()) {
-					if (ventana.personaje.getMazo().get(numeroTocado4).getClass() == CartaOfensiva.class) {
-						daño = ((CartaOfensiva) ventana.personaje.getMazo().get(numeroTocado1)).getDaño();
-						textArea.append("\nHas atacado con: " + ventana.personaje.getMazo().get(numeroTocado1)
+					if (ventana.personaje.getMazo().get(numeroTocado).getClass() == CartaOfensiva.class) {
+						daño = ((CartaOfensiva) ventana.personaje.getMazo().get(numeroTocado)).getDaño();
+						textArea.append("\nHas atacado con: " + ventana.personaje.getMazo().get(numeroTocado)
 								+ "\nTe queda de defensa: " + (ventana.personaje.getDefensa()) + "\nTe queda de vida: "
 								+ (ventana.personaje.getVida()));
 						azarMaquina = (byte) cartasMaquina.nextInt(0, 3);
@@ -466,10 +466,10 @@ public class PantallaNivel extends JPanel {
 							break;
 						}
 
-					} else if (ventana.personaje.getMazo().get(numeroTocado1).getClass() == CartaDefensiva.class) {
-						defensa = ((CartaDefensiva) ventana.personaje.getMazo().get(numeroTocado1)).getDefensa();
+					} else if (ventana.personaje.getMazo().get(numeroTocado).getClass() == CartaDefensiva.class) {
+						defensa = ((CartaDefensiva) ventana.personaje.getMazo().get(numeroTocado)).getDefensa();
 						azarMaquina = (byte) cartasMaquina.nextInt(0, 3);
-						textArea.append("\nHas defendido con: " + ventana.personaje.getMazo().get(numeroTocado1)
+						textArea.append("\nHas defendido con: " + ventana.personaje.getMazo().get(numeroTocado)
 								+ "\nTe queda de defensa: " + (ventana.personaje.getDefensa()) + "\nTe queda de vida: "
 								+ (ventana.personaje.getVida()));
 						switch (azarMaquina) {
@@ -577,7 +577,7 @@ public class PantallaNivel extends JPanel {
 					}
 				}
 				if(ventana.personaje.getVida()==0) {
-					ventana.personaje=null;
+					
 					ventana.cambiarAPantalla(PantallaLoser.class);
 				}else if(ventana.personaje2.getVida()==0) {
 					ventana.cambiarAPantalla(PantallaWin.class);
@@ -594,10 +594,9 @@ public class PantallaNivel extends JPanel {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if (btnCarta3.isEnabled()) {
-
-					if (ventana.personaje.getMazo().get(numeroTocado4).getClass() == CartaOfensiva.class) {
-						daño = ((CartaOfensiva) ventana.personaje.getMazo().get(numeroTocado1)).getDaño();
-						textArea.append("\nHas atacado con: " + ventana.personaje.getMazo().get(numeroTocado1)
+					if (ventana.personaje.getMazo().get(numeroTocado2).getClass() == CartaOfensiva.class) {
+						daño = ((CartaOfensiva) ventana.personaje.getMazo().get(numeroTocado2)).getDaño();
+						textArea.append("\nHas atacado con: " + ventana.personaje.getMazo().get(numeroTocado2)
 								+ "\nTe queda de defensa: " + (ventana.personaje.getDefensa()) + "\nTe queda de vida: "
 								+ (ventana.personaje.getVida()));
 						azarMaquina = (byte) cartasMaquina.nextInt(0, 3);
@@ -1035,7 +1034,7 @@ public class PantallaNivel extends JPanel {
 					}
 				}
 				if(ventana.personaje.getVida()==0) {
-					ventana.personaje=null;
+					
 					ventana.cambiarAPantalla(PantallaLoser.class);
 				}else if(ventana.personaje2.getVida()==0) {
 					ventana.cambiarAPantalla(PantallaWin.class);
@@ -1490,7 +1489,7 @@ public class PantallaNivel extends JPanel {
 					}
 				}
 				if(ventana.personaje.getVida()==0) {
-					ventana.personaje=null;
+					
 					ventana.cambiarAPantalla(PantallaLoser.class);
 				}else if(ventana.personaje2.getVida()==0) {
 					ventana.cambiarAPantalla(PantallaWin.class);

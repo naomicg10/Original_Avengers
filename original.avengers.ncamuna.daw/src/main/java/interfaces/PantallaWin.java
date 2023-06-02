@@ -9,6 +9,11 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 import javax.swing.JButton;
+import javax.swing.JLabel;
+import java.awt.Font;
+import javax.swing.SwingConstants;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class PantallaWin extends JPanel {
 	private Ventana ventana;
@@ -28,11 +33,24 @@ public class PantallaWin extends JPanel {
 	}
 	
 	public PantallaWin(Ventana v) {
+		setBackground(new Color(255, 255, 255));
 		this.ventana=v;
 		setLayout(null);
 		
-		JButton btnNewButton = new JButton("Cerrar");
-		btnNewButton.setBounds(310, 369, 114, 23);
+		JLabel lblNewLabel = new JLabel("YOU WIN");
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 28));
+		lblNewLabel.setBounds(0, 0, 746, 481);
+		add(lblNewLabel);
+		
+		JButton btnNewButton = new JButton("Volver");
+		btnNewButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				ventana.cambiarAPantalla(PantallaEleccionPJ.class);
+			}
+		});
+		btnNewButton.setBounds(332, 370, 89, 23);
 		add(btnNewButton);
 		
 	}
