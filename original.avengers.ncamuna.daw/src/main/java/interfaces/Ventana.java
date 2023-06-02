@@ -19,12 +19,12 @@ public class Ventana extends JFrame {
 	protected Personaje personaje2;
 	
 	public Ventana() {
-		this.setSize(1060, 620);
+		this.setSize(1075, 635);
 		this.setTitle("Original Avengers");
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setLocationRelativeTo(null);
 		this.setContentPane(new PantallaLogin(this));
-		this.setIconImage(new ImageIcon("./AvengersIcon.png").getImage());
+		this.setIconImage(new ImageIcon("./Fotos/AvengersIcon.png").getImage());
 		this.setVisible(true);
 	}
 
@@ -40,6 +40,12 @@ public class Ventana extends JFrame {
 			this.setContentPane(new PantallaEleccionPJ(this));
 		}
 		if(clase.equals(PantallaNivel.class)) {
+			this.setContentPane(new PantallaNivel(this));
+		}
+		if(clase.equals(PantallaWin.class)) {
+			this.setContentPane(new PantallaNivel(this));
+		}
+		if(clase.equals(PantallaLoser.class)) {
 			this.setContentPane(new PantallaNivel(this));
 		}
 		

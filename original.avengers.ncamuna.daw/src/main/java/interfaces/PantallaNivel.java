@@ -77,7 +77,7 @@ public class PantallaNivel extends JPanel {
 		JLabel Carta2 = new JLabel("");
 		Image escala = ventana.personaje.getMazo().get(azar).getImagen().getScaledInstance(140, 150, 0);
 		Carta2.setIcon(new ImageIcon(escala));
-		Carta2.setBounds(380, 343, 140, 150);
+		Carta2.setBounds(372, 343, 140, 150);
 		add(Carta2);
 
 		azar = (byte) r.nextInt(0, 5);
@@ -98,7 +98,7 @@ public class PantallaNivel extends JPanel {
 		JLabel Carta3 = new JLabel("");
 		escala = ventana.personaje.getMazo().get(azar).getImagen().getScaledInstance(140, 150, 0);
 		Carta3.setIcon(new ImageIcon(escala));
-		Carta3.setBounds(540, 343, 140, 150);
+		Carta3.setBounds(522, 343, 140, 150);
 		add(Carta3);
 
 		azar = (byte) r.nextInt(0, 5);
@@ -106,7 +106,7 @@ public class PantallaNivel extends JPanel {
 		JLabel CartaIA3 = new JLabel("");
 		escala = ventana.personaje2.getMazo().get(azar).getImagen().getScaledInstance(140, 150, 0);
 		CartaIA3.setIcon(new ImageIcon(escala));
-		CartaIA3.setBounds(662, 26, 140, 150);
+		CartaIA3.setBounds(650, 11, 140, 150);
 		add(CartaIA3);
 
 		azar = (byte) r.nextInt(0, 5);
@@ -117,7 +117,7 @@ public class PantallaNivel extends JPanel {
 		JLabel CartaIA2 = new JLabel("");
 		escala = ventana.personaje2.getMazo().get(azar).getImagen().getScaledInstance(140, 150, 0);
 		CartaIA2.setIcon(new ImageIcon(escala));
-		CartaIA2.setBounds(506, 26, 140, 150);
+		CartaIA2.setBounds(500, 11, 140, 150);
 		add(CartaIA2);
 
 		azar = (byte) r.nextInt(0, 5);
@@ -128,7 +128,7 @@ public class PantallaNivel extends JPanel {
 		JLabel CartaIA1 = new JLabel("");
 		escala = ventana.personaje2.getMazo().get(azar).getImagen().getScaledInstance(140, 150, 0);
 		CartaIA1.setIcon(new ImageIcon(escala));
-		CartaIA1.setBounds(346, 26, 140, 150);
+		CartaIA1.setBounds(350, 11, 140, 150);
 		add(CartaIA1);
 
 		final JRadioButton btnCarta1 = new JRadioButton("Ataque/Defensa");
@@ -196,9 +196,15 @@ public class PantallaNivel extends JPanel {
 									}
 
 								} else {
-									if (ventana.personaje2.getDefensa() != 0) {
+									if (ventana.personaje2.getDefensa() != 0&&daño<=ventana.personaje2.getDefensa()) {
 										ventana.personaje2.setDefensa((byte) (ventana.personaje2.getDefensa() - daño));
-									} else {
+										if(ventana.personaje2.getDefensa()!=0&&daño>=ventana.personaje2.getDefensa()) {
+											byte dañoRestante=(byte)(daño-ventana.personaje2.getDefensa());
+											ventana.personaje2.setDefensa((byte)(ventana.personaje2.getDefensa()-daño));
+											ventana.personaje2.setVida((byte)(ventana.personaje2.getVida()-dañoRestante));
+											
+										}
+									} else if(ventana.personaje2.getDefensa()==0){
 										ventana.personaje2.setVida((byte) (ventana.personaje2.getVida() - daño));
 									}
 								}
@@ -247,9 +253,19 @@ public class PantallaNivel extends JPanel {
 										if (ventana.personaje2.getDefensa() != 0) {
 											ventana.personaje2.setDefensa(
 													(byte) (ventana.personaje2.getDefensa() - dañoRestante));
+											
 										} else {
-											ventana.personaje2
-													.setVida((byte) (ventana.personaje2.getVida() - dañoRestante));
+											if (ventana.personaje2.getDefensa() != 0&&daño<=ventana.personaje2.getDefensa()) {
+												ventana.personaje2.setDefensa((byte) (ventana.personaje2.getDefensa() - daño));
+												if(ventana.personaje2.getDefensa()!=0&&daño>=ventana.personaje2.getDefensa()) {
+													dañoRestante=(byte)(daño-ventana.personaje2.getDefensa());
+													ventana.personaje2.setDefensa((byte)(ventana.personaje2.getDefensa()-daño));
+													ventana.personaje2.setVida((byte)(ventana.personaje2.getVida()-dañoRestante));
+													
+												}
+											} else if(ventana.personaje2.getDefensa()==0){
+												ventana.personaje2.setVida((byte) (ventana.personaje2.getVida() - daño));
+											}
 										}
 									}
 								}
@@ -303,8 +319,17 @@ public class PantallaNivel extends JPanel {
 												ventana.personaje2.setDefensa(
 														(byte) (ventana.personaje2.getDefensa() - dañoRestante));
 											} else {
-												ventana.personaje2
-														.setVida((byte) (ventana.personaje2.getVida() - dañoRestante));
+												if (ventana.personaje2.getDefensa() != 0&&daño<=ventana.personaje2.getDefensa()) {
+													ventana.personaje2.setDefensa((byte) (ventana.personaje2.getDefensa() - daño));
+													if(ventana.personaje2.getDefensa()!=0&&daño>=ventana.personaje2.getDefensa()) {
+														dañoRestante=(byte)(daño-ventana.personaje2.getDefensa());
+														ventana.personaje2.setDefensa((byte)(ventana.personaje2.getDefensa()-daño));
+														ventana.personaje2.setVida((byte)(ventana.personaje2.getVida()-dañoRestante));
+														
+													}
+												} else if(ventana.personaje2.getDefensa()==0){
+													ventana.personaje2.setVida((byte) (ventana.personaje2.getVida() - daño));
+												}
 											}
 										}
 									}
@@ -351,6 +376,7 @@ public class PantallaNivel extends JPanel {
 									ventana.personaje.setDefensa((byte)(ventana.personaje.getDefensa()-dañoMaquina));
 								}else if(defensa==0&&ventana.personaje.getDefensa()==0) {
 									ventana.personaje.setVida((byte)(ventana.personaje.getVida()-dañoMaquina));
+									
 								}
 							}
 							break;
@@ -383,11 +409,11 @@ public class PantallaNivel extends JPanel {
 									ventana.personaje.setDefensa((byte)(ventana.personaje.getDefensa()-dañoMaquina));
 								}else if(defensa==0&&ventana.personaje.getDefensa()==0) {
 									ventana.personaje.setVida((byte)(ventana.personaje.getVida()-dañoMaquina));
+									
 								}
 							}
 							break;
 						case 2:
-
 							if (ventana.personaje2.getMazo().get(numeroTocado2).getClass() == CartaOfensiva.class) {
 								textArea.append("\nEl enemigo ha atacado con: "
 										+ ventana.personaje2.getMazo().get(numeroTocado2) + "\nLe queda de defensa: "
@@ -416,6 +442,7 @@ public class PantallaNivel extends JPanel {
 									ventana.personaje.setDefensa((byte)(ventana.personaje.getDefensa()-dañoMaquina));
 								}else if(defensa==0&&ventana.personaje.getDefensa()==0) {
 									ventana.personaje.setVida((byte)(ventana.personaje.getVida()-dañoMaquina));
+									
 								}
 							}
 
@@ -426,7 +453,7 @@ public class PantallaNivel extends JPanel {
 				}
 			}
 		});
-		btnCarta1.setBounds(233, 313, 109, 23);
+		btnCarta1.setBounds(222, 313, 140, 23);
 		add(btnCarta1);
 
 		final JButton btnCarta2 = new JButton("Ataque/Defensa");
@@ -570,6 +597,7 @@ public class PantallaNivel extends JPanel {
 					} else if (ventana.personaje.getMazo().get(numeroTocado1).getClass() == CartaDefensiva.class) {
 						defensa = ((CartaDefensiva) ventana.personaje.getMazo().get(numeroTocado1)).getDefensa();
 						azarMaquina = (byte) cartasMaquina.nextInt(0, 3);
+						
 						switch (azarMaquina) {
 						case 0:
 							textArea.append(
@@ -620,6 +648,7 @@ public class PantallaNivel extends JPanel {
 									}
 								}
 							}
+							
 							break;
 						case 2:
 							textArea.append(
@@ -645,7 +674,7 @@ public class PantallaNivel extends JPanel {
 									}
 								}
 							}
-
+							
 						}
 					}
 					System.out.println(ventana.personaje);
@@ -653,7 +682,7 @@ public class PantallaNivel extends JPanel {
 				}
 			}
 		});
-		btnCarta2.setBounds(380, 313, 140, 23);
+		btnCarta2.setBounds(372, 313, 140, 23);
 		add(btnCarta2);
 
 		final JButton btnCarta3 = new JButton("Ataque/Defensa");
@@ -661,8 +690,7 @@ public class PantallaNivel extends JPanel {
 		btnCarta3.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if (btnCarta1.isSelected()) {
-
+				if (btnCarta3.isSelected()) {
 					if (ventana.personaje.getMazo().get(numeroTocado1).getClass() == CartaOfensiva.class) {
 						daño = ((CartaOfensiva) ventana.personaje.getMazo().get(numeroTocado1)).getDaño();
 
@@ -880,14 +908,7 @@ public class PantallaNivel extends JPanel {
 				}
 			}
 		});
-		btnCarta3.setBounds(540, 313, 140, 23);
+		btnCarta3.setBounds(533, 313, 140, 23);
 		add(btnCarta3);
-
-//		System.out.println(ventana.personaje);
-//		System.out.println(ventana.personaje2);
-
-//		while(heroe.getVida()!=0&&villano.getVida()!=0) {
-//			
-//		}
 	}
 }
