@@ -1,6 +1,7 @@
 package interfaces;
 
 import java.awt.BorderLayout;
+import java.awt.image.BufferedImage;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -42,22 +43,7 @@ public class Ventana extends JFrame {
 		if(clase.equals(PantallaNivel.class)) {
 			this.setContentPane(new PantallaNivel(this));
 		}
-		if(clase.equals(PantallaWin.class)) {
-			this.setContentPane(new PantallaNivel(this));
-		}
-		if(clase.equals(PantallaLoser.class)) {
-			this.setContentPane(new PantallaNivel(this));
-		}
-		
 		this.getContentPane().setVisible(true);
 	}
-	
-//	public void interfazCombate(Class<?> clase, Heroe heroe, Villano villano) {
-//		this.getContentPane().setVisible(false);
-//		if (clase.equals(PantallaNivel.class)) {
-//			this.setContentPane(new PantallaNivel(heroe, villano,(this)));
-//		}
-//		this.getContentPane().setVisible(true);
-//	}
 	
 }

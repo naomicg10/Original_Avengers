@@ -140,7 +140,6 @@ public class PantallaEleccionPJ extends JPanel {
 			}
 		});
 		Heroe capipaleta = Heroe.cargarCapipaleta();
-//		abrirVentana(RadioButton_CA, ventana, capipaleta, villano);
 		RadioButton_CA.setFont(new Font("Tahoma", Font.BOLD, 11));
 		RadioButton_CA.setForeground(new Color(255, 255, 255));
 		RadioButton_CA.setBounds(251, 278, 130, 23);
@@ -154,9 +153,9 @@ public class PantallaEleccionPJ extends JPanel {
 				ventana.personaje=Heroe.cargarIronMan();
 				ventana.personaje2=Villano.villanoAleatorio(villanos);
 				ventana.cambiarAPantalla(PantallaNivel.class);
+				
 			}
 		});
-//		abrirVentana(RadioButton_IM, ventana, ironman, villano);
 		RadioButton_IM.setFont(new Font("Tahoma", Font.BOLD, 11));
 		RadioButton_IM.setForeground(new Color(255, 250, 250));
 		RadioButton_IM.setBounds(153, 278, 96, 23);
@@ -172,7 +171,6 @@ public class PantallaEleccionPJ extends JPanel {
 				ventana.cambiarAPantalla(PantallaNivel.class);
 			}
 		});
-//		abrirVentana(RadioButton_BB, ventana, thor, villano);
 		RadioButton_BB.setFont(new Font("Tahoma", Font.BOLD, 11));
 		RadioButton_BB.setForeground(new Color(255, 255, 255));
 		RadioButton_BB.setBounds(419, 280, 68, 23);
@@ -188,7 +186,6 @@ public class PantallaEleccionPJ extends JPanel {
 				ventana.cambiarAPantalla(PantallaNivel.class);
 			}
 		});
-//		abrirVentana(RadioButton_H, ventana, hulk, villano);
 		RadioButton_H.setFont(new Font("Tahoma", Font.BOLD, 11));
 		RadioButton_H.setForeground(new Color(255, 255, 255));
 		RadioButton_H.setBounds(566, 280, 68, 23);
@@ -204,7 +201,6 @@ public class PantallaEleccionPJ extends JPanel {
 				ventana.cambiarAPantalla(PantallaNivel.class);
 			}
 		});
-//		abrirVentana(RadioButton_VN, ventana, viudaNegra, villano);
 		RadioButton_VN.setFont(new Font("Tahoma", Font.BOLD, 11));
 		RadioButton_VN.setForeground(new Color(255, 255, 255));
 		RadioButton_VN.setBounds(695, 278, 109, 23);
@@ -220,7 +216,6 @@ public class PantallaEleccionPJ extends JPanel {
 				ventana.cambiarAPantalla(PantallaNivel.class);
 			}
 		});
-//		abrirVentana(RadioButton_OH, ventana, ojoHalcon, villano);
 		RadioButton_OH.setFont(new Font("Tahoma", Font.BOLD, 11));
 		RadioButton_OH.setForeground(new Color(255, 255, 255));
 		RadioButton_OH.setBounds(820, 278, 109, 23);
@@ -320,7 +315,6 @@ public class PantallaEleccionPJ extends JPanel {
 				ventana.cambiarAPantalla(PantallaNivel.class);
 			}
 		});
-//		abrirVentana(RadioButton_L, ventana, heroe, loki);
 		RadioButton_L.setFont(new Font("Tahoma", Font.BOLD, 11));
 		RadioButton_L.setForeground(new Color(255, 255, 255));
 		RadioButton_L.setBounds(168, 530, 49, 23);
@@ -336,7 +330,6 @@ public class PantallaEleccionPJ extends JPanel {
 				ventana.cambiarAPantalla(PantallaNivel.class);
 			}
 		});
-//		abrirVentana(RadioButton_U, ventana, heroe, ultron);
 		RadioButton_U.setFont(new Font("Tahoma", Font.BOLD, 11));
 		RadioButton_U.setForeground(new Color(255, 255, 255));
 		RadioButton_U.setBounds(278, 530, 62, 23);
@@ -352,7 +345,6 @@ public class PantallaEleccionPJ extends JPanel {
 				ventana.cambiarAPantalla(PantallaNivel.class);
 			}
 		});
-//		abrirVentana(RadioButton_BZ, ventana, heroe, zemo);
 		RadioButton_BZ.setFont(new Font("Tahoma", Font.BOLD, 11));
 		RadioButton_BZ.setForeground(new Color(255, 255, 255));
 		RadioButton_BZ.setBounds(399, 530, 110, 23);
@@ -368,7 +360,6 @@ public class PantallaEleccionPJ extends JPanel {
 				ventana.cambiarAPantalla(PantallaNivel.class);
 			}
 		});
-//		abrirVentana(RadioButton_EM, ventana, heroe, ebony);
 		RadioButton_EM.setFont(new Font("Tahoma", Font.BOLD, 11));
 		RadioButton_EM.setForeground(new Color(255, 255, 255));
 		RadioButton_EM.setBounds(566, 530, 93, 23);
@@ -384,7 +375,6 @@ public class PantallaEleccionPJ extends JPanel {
 				ventana.cambiarAPantalla(PantallaNivel.class);
 			}
 		});
-//		abrirVentana(RadioButton_KC, ventana, heroe, kang);
 		RadioButton_KC.setFont(new Font("Tahoma", Font.BOLD, 11));
 		RadioButton_KC.setForeground(new Color(255, 255, 255));
 		RadioButton_KC.setBounds(681, 530, 148, 23);
@@ -400,7 +390,6 @@ public class PantallaEleccionPJ extends JPanel {
 				ventana.cambiarAPantalla(PantallaNivel.class);
 			}
 		});
-//		abrirVentana(RadioButton_T, ventana, heroe, thanos);
 		RadioButton_T.setFont(new Font("Tahoma", Font.BOLD, 11));
 		RadioButton_T.setForeground(new Color(255, 255, 255));
 		RadioButton_T.setBounds(850, 530, 68, 23);
@@ -431,26 +420,6 @@ public class PantallaEleccionPJ extends JPanel {
 		LabelTituloVillanos.setBounds(499, 331, 56, 14);
 		add(LabelTituloVillanos);
 	}
-
-//	private static void abrirVentana(final JRadioButton radioButton, final Ventana ventana, Heroe heroe, Villano villano) {
-//		radioButton.addItemListener(new ItemListener() {
-//			public void itemStateChanged(ItemEvent e) {
-//				if (e.getStateChange() == ItemEvent.SELECTED) {
-//					ImageIcon icono = new ImageIcon(
-//							"C:\\Users\\naomi\\OneDrive\\Documentos\\Original_Avengers\\AvengersIcon.png");
-//					int opcion = JOptionPane.showOptionDialog(radioButton, "¿Quieres este personaje?", "Confirmación",
-//							JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, icono, null, null);
-//
-//					if (opcion == JOptionPane.YES_OPTION) {
-//						System.out.println("Has hecho clic en el botón 'Aceptar'");
-//						ventana.interfazCombate(PantallaNivel.class, null, null);
-//					} else if (opcion == JOptionPane.NO_OPTION) {
-//						System.out.println("Has hecho clic en el botón 'Cancelar'");
-//					}
-//				}
-//			}
-//		});
-//	}
 	
 }
 	
