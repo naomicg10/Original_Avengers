@@ -43,7 +43,6 @@ public class PantallaNivel extends JPanel {
 	private byte numeroTocado3;
 	private byte numeroTocado2;
 	private final ButtonGroup buttonGroup = new ButtonGroup();
-	
 
 	@Override // Poner fondo en esta pantalla
 	protected void paintComponent(Graphics g) {
@@ -141,17 +140,17 @@ public class PantallaNivel extends JPanel {
 
 					if (ventana.personaje.getMazo().get(numeroTocado1).getClass() == CartaOfensiva.class) {
 						daño = ((CartaOfensiva) ventana.personaje.getMazo().get(numeroTocado1)).getDaño();
-
+						textArea.append("\nHas atacado con: " + ventana.personaje.getMazo().get(numeroTocado1)
+								+ "\nTe queda de defensa: " + (ventana.personaje.getDefensa()) + "\nTe queda de vida: "
+								+ (ventana.personaje.getVida()));
 						azarMaquina = (byte) cartasMaquina.nextInt(0, 3);
 						switch (azarMaquina) {
 						case 0:
-							textArea.append("\nHas atacado/defendido con: "+ ventana.personaje.getMazo().get(numeroTocado4)
-									+ "\nTe queda de defensa: "+(ventana.personaje.getDefensa())
-									+ "\nTe queda de vida: "+(ventana.personaje.getVida()));
-							textArea.append("\nEl enemigo ha atacado/defendido con: "+ ventana.personaje2.getMazo().get(numeroTocado4)
-									+ "\nLe queda de defensa: "+(ventana.personaje2.getDefensa())
-									+ "\nLe queda de vida: "+(ventana.personaje2.getVida()));
 							if (ventana.personaje2.getMazo().get(numeroTocado4).getClass() == CartaOfensiva.class) {
+								textArea.append("\nEl enemigo ha atacado con: "
+										+ ventana.personaje2.getMazo().get(numeroTocado4) + "\nLe queda de defensa: "
+										+ (ventana.personaje2.getDefensa()) + "\nLe queda de vida: "
+										+ (ventana.personaje2.getVida()));
 								dañoMaquina = ((CartaOfensiva) ventana.personaje2.getMazo().get(numeroTocado4))
 										.getDaño();
 								if (ventana.personaje2.getDefensa() != 0) {
@@ -168,11 +167,34 @@ public class PantallaNivel extends JPanel {
 								}
 							} else if (ventana.personaje2.getMazo().get(numeroTocado4)
 									.getClass() == CartaDefensiva.class) {
+								textArea.append("\nEl enemigo ha defendido con: "
+										+ ventana.personaje2.getMazo().get(numeroTocado4) + "\nLe queda de defensa: "
+										+ (ventana.personaje2.getDefensa()) + "\nLe queda de vida: "
+										+ (ventana.personaje2.getVida()));
 								if (((CartaDefensiva) ventana.personaje2.getMazo().get(numeroTocado4))
 										.getDefensa() != 0) {
-									((CartaDefensiva) ventana.personaje2.getMazo().get(numeroTocado4)).setDefensa(
-											(byte) (((CartaDefensiva) ventana.personaje2.getMazo().get(numeroTocado4))
-													.getDefensa() - daño));
+									if (daño <= ((CartaDefensiva) ventana.personaje2.getMazo().get(numeroTocado4))
+											.getDefensa()) {
+										((CartaDefensiva) ventana.personaje2.getMazo().get(numeroTocado4))
+												.setDefensa((byte) (((CartaDefensiva) ventana.personaje2.getMazo()
+														.get(numeroTocado4)).getDefensa() - daño));
+									} else if (daño > ((CartaDefensiva) ventana.personaje2.getMazo().get(numeroTocado4))
+											.getDefensa()) {
+										byte dañoRestante = (byte) (daño
+												- ((CartaDefensiva) ventana.personaje2.getMazo().get(numeroTocado4))
+														.getDefensa());
+										((CartaDefensiva) ventana.personaje2.getMazo().get(numeroTocado4))
+												.setDefensa((byte) (((CartaDefensiva) ventana.personaje2.getMazo()
+														.get(numeroTocado4)).getDefensa() - daño));
+										if (ventana.personaje2.getDefensa() != 0) {
+											ventana.personaje2.setDefensa(
+													(byte) (ventana.personaje2.getDefensa() - dañoRestante));
+										} else {
+											ventana.personaje2
+													.setVida((byte) (ventana.personaje2.getVida() - dañoRestante));
+										}
+									}
+
 								} else {
 									if (ventana.personaje2.getDefensa() != 0) {
 										ventana.personaje2.setDefensa((byte) (ventana.personaje2.getDefensa() - daño));
@@ -183,13 +205,11 @@ public class PantallaNivel extends JPanel {
 							}
 							break;
 						case 1:
-							textArea.append("\nHas atacado/defendido con: "+ ventana.personaje.getMazo().get(numeroTocado3)
-									+ "\nTe queda de defensa: "+(ventana.personaje.getDefensa())
-									+ "\nTe queda de vida: "+(ventana.personaje.getVida()));
-							textArea.append("\nEl enemigo ha atacado/defendido con: "+ ventana.personaje2.getMazo().get(numeroTocado3)
-									+ "\nLe queda de defensa: "+(ventana.personaje2.getDefensa())
-									+ "\nLe queda de vida: "+(ventana.personaje2.getVida()));
 							if (ventana.personaje2.getMazo().get(numeroTocado3).getClass() == CartaOfensiva.class) {
+								textArea.append("\nEl enemigo ha atacado con: "
+										+ ventana.personaje2.getMazo().get(numeroTocado3) + "\nLe queda de defensa: "
+										+ (ventana.personaje2.getDefensa()) + "\nLe queda de vida: "
+										+ (ventana.personaje2.getVida()));
 								dañoMaquina = ((CartaOfensiva) ventana.personaje2.getMazo().get(numeroTocado3))
 										.getDaño();
 								if (ventana.personaje2.getDefensa() != 0) {
@@ -205,28 +225,43 @@ public class PantallaNivel extends JPanel {
 								}
 							} else if (ventana.personaje2.getMazo().get(numeroTocado3)
 									.getClass() == CartaDefensiva.class) {
+								textArea.append("\nEl enemigo ha defendido con: "
+										+ ventana.personaje2.getMazo().get(numeroTocado3) + "\nLe queda de defensa: "
+										+ (ventana.personaje2.getDefensa()) + "\nLe queda de vida: "
+										+ (ventana.personaje2.getVida()));
 								if (((CartaDefensiva) ventana.personaje2.getMazo().get(numeroTocado3))
 										.getDefensa() != 0) {
-									((CartaDefensiva) ventana.personaje2.getMazo().get(numeroTocado3)).setDefensa(
-											(byte) (((CartaDefensiva) ventana.personaje2.getMazo().get(numeroTocado3))
-													.getDefensa() - daño));
-								} else {
-									if (ventana.personaje2.getDefensa() != 0) {
-										ventana.personaje2.setDefensa((byte) (ventana.personaje2.getDefensa() - daño));
-									} else {
-										ventana.personaje2.setVida((byte) (ventana.personaje2.getVida() - daño));
+									if (daño <= ((CartaDefensiva) ventana.personaje2.getMazo().get(numeroTocado3))
+											.getDefensa()) {
+										((CartaDefensiva) ventana.personaje2.getMazo().get(numeroTocado3))
+												.setDefensa((byte) (((CartaDefensiva) ventana.personaje2.getMazo()
+														.get(numeroTocado3)).getDefensa() - daño));
+									} else if (daño > ((CartaDefensiva) ventana.personaje2.getMazo().get(numeroTocado3))
+											.getDefensa()) {
+										byte dañoRestante = (byte) (daño
+												- ((CartaDefensiva) ventana.personaje2.getMazo().get(numeroTocado3))
+														.getDefensa());
+										((CartaDefensiva) ventana.personaje2.getMazo().get(numeroTocado3))
+												.setDefensa((byte) (((CartaDefensiva) ventana.personaje2.getMazo()
+														.get(numeroTocado3)).getDefensa() - daño));
+										if (ventana.personaje2.getDefensa() != 0) {
+											ventana.personaje2.setDefensa(
+													(byte) (ventana.personaje2.getDefensa() - dañoRestante));
+										} else {
+											ventana.personaje2
+													.setVida((byte) (ventana.personaje2.getVida() - dañoRestante));
+										}
 									}
 								}
 							}
 							break;
 						case 2:
-							textArea.append("\nHas atacado/defendido con: "+ ventana.personaje.getMazo().get(numeroTocado2)
-									+ "\nTe queda de defensa: "+(ventana.personaje.getDefensa())
-									+ "\nTe queda de vida: "+(ventana.personaje.getVida()));
-							textArea.append("\nEl enemigo ha atacado/defendido con: "+ ventana.personaje2.getMazo().get(numeroTocado2)
-									+ "\nLe queda de defensa: "+(ventana.personaje2.getDefensa())
-									+ "\nLe queda de vida: "+(ventana.personaje2.getVida()));
+
 							if (ventana.personaje2.getMazo().get(numeroTocado2).getClass() == CartaOfensiva.class) {
+								textArea.append("\nEl enemigo ha atacado con: "
+										+ ventana.personaje2.getMazo().get(numeroTocado2) + "\nLe queda de defensa: "
+										+ (ventana.personaje2.getDefensa()) + "\nLe queda de vida: "
+										+ (ventana.personaje2.getVida()));
 								dañoMaquina = ((CartaOfensiva) ventana.personaje2.getMazo().get(numeroTocado2))
 										.getDaño();
 								if (ventana.personaje2.getDefensa() != 0) {
@@ -245,17 +280,32 @@ public class PantallaNivel extends JPanel {
 									}
 								} else if (ventana.personaje2.getMazo().get(numeroTocado2)
 										.getClass() == CartaDefensiva.class) {
+									textArea.append("\nEl enemigo ha defendido con: "
+											+ ventana.personaje2.getMazo().get(numeroTocado2)
+											+ "\nLe queda de defensa: " + (ventana.personaje2.getDefensa())
+											+ "\nLe queda de vida: " + (ventana.personaje2.getVida()));
 									if (((CartaDefensiva) ventana.personaje2.getMazo().get(numeroTocado2))
 											.getDefensa() != 0) {
-										((CartaDefensiva) ventana.personaje2.getMazo().get(numeroTocado2))
-												.setDefensa((byte) (((CartaDefensiva) ventana.personaje2.getMazo()
-														.get(numeroTocado2)).getDefensa() - daño));
-									} else {
-										if (ventana.personaje2.getDefensa() != 0) {
-											ventana.personaje2
-													.setDefensa((byte) (ventana.personaje2.getDefensa() - daño));
-										} else {
-											ventana.personaje2.setVida((byte) (ventana.personaje2.getVida() - daño));
+										if (daño <= ((CartaDefensiva) ventana.personaje2.getMazo().get(numeroTocado2))
+												.getDefensa()) {
+											((CartaDefensiva) ventana.personaje2.getMazo().get(numeroTocado2))
+													.setDefensa((byte) (((CartaDefensiva) ventana.personaje2.getMazo()
+															.get(numeroTocado2)).getDefensa() - daño));
+										} else if (daño > ((CartaDefensiva) ventana.personaje2.getMazo()
+												.get(numeroTocado2)).getDefensa()) {
+											byte dañoRestante = (byte) (daño
+													- ((CartaDefensiva) ventana.personaje2.getMazo().get(numeroTocado2))
+															.getDefensa());
+											((CartaDefensiva) ventana.personaje2.getMazo().get(numeroTocado2))
+													.setDefensa((byte) (((CartaDefensiva) ventana.personaje2.getMazo()
+															.get(numeroTocado2)).getDefensa() - daño));
+											if (ventana.personaje2.getDefensa() != 0) {
+												ventana.personaje2.setDefensa(
+														(byte) (ventana.personaje2.getDefensa() - dañoRestante));
+											} else {
+												ventana.personaje2
+														.setVida((byte) (ventana.personaje2.getVida() - dañoRestante));
+											}
 										}
 									}
 								}
@@ -267,70 +317,108 @@ public class PantallaNivel extends JPanel {
 					} else if (ventana.personaje.getMazo().get(numeroTocado1).getClass() == CartaDefensiva.class) {
 						defensa = ((CartaDefensiva) ventana.personaje.getMazo().get(numeroTocado1)).getDefensa();
 						azarMaquina = (byte) cartasMaquina.nextInt(0, 3);
+						textArea.append("\nHas defendido con: " + ventana.personaje.getMazo().get(numeroTocado1)
+								+ "\nTe queda de defensa: " + (ventana.personaje.getDefensa()) + "\nTe queda de vida: "
+								+ (ventana.personaje.getVida()));
 						switch (azarMaquina) {
 						case 0:
-							textArea.append("\nHas atacado/defendido con: "+ ventana.personaje.getMazo().get(numeroTocado4)
-									+ "\nTe queda de defensa: "+(ventana.personaje.getDefensa())
-									+ "\nTe queda de vida: "+(ventana.personaje.getVida()));
-							textArea.append("\nEl enemigo ha atacado/defendido con: "+ ventana.personaje2.getMazo().get(numeroTocado4)
-									+ "\nLe queda de defensa: "+(ventana.personaje2.getDefensa())
-									+ "\nLe queda de vida: "+(ventana.personaje2.getVida()));
 							if (ventana.personaje2.getMazo().get(numeroTocado4).getClass() == CartaOfensiva.class) {
-								dañoMaquina = dañoMaquina = ((CartaOfensiva) ventana.personaje2.getMazo().get(numeroTocado4)).getDaño();
-								if (defensa != 0) {
+								textArea.append("\nEl enemigo ha atacado con: "
+										+ ventana.personaje2.getMazo().get(numeroTocado4) + "\nLe queda de defensa: "
+										+ (ventana.personaje2.getDefensa()) + "\nLe queda de vida: "
+										+ (ventana.personaje2.getVida()));
+								dañoMaquina = dañoMaquina = ((CartaOfensiva) ventana.personaje2.getMazo()
+										.get(numeroTocado4)).getDaño();
+								if (defensa != 0 && dañoMaquina <= defensa) {
 									((CartaDefensiva) ventana.personaje.getMazo().get(numeroTocado1))
 											.setDefensa((byte) (defensa - dañoMaquina));
-								}else {
-									if(ventana.personaje.getDefensa()!=0) {
-										ventana.personaje.setDefensa((byte)(ventana.personaje.getDefensa()-dañoMaquina));
-									}else {
-										ventana.personaje.setVida((byte)(ventana.personaje.getVida()-dañoMaquina));
+
+								} else if (defensa != 0 && dañoMaquina > defensa) {
+									byte dañoRestante = (byte) (dañoMaquina - defensa);
+									((CartaDefensiva) ventana.personaje.getMazo().get(numeroTocado1))
+									.setDefensa((byte) (defensa - dañoMaquina));
+									if (ventana.personaje.getDefensa() != 0) {
+										ventana.personaje
+												.setDefensa((byte) (ventana.personaje.getDefensa() - dañoRestante));
+									} else {
+										ventana.personaje.setVida((byte) (ventana.personaje.getVida() - dañoRestante));
 									}
+								}else if(defensa==0&&ventana.personaje.getDefensa()!=0) {
+									if(dañoMaquina>ventana.personaje.getDefensa()) {
+										byte dañoRestante=(byte)(dañoMaquina-ventana.personaje.getDefensa());
+										ventana.personaje.setVida((byte)(ventana.personaje.getVida()-dañoRestante));
+									}
+									ventana.personaje.setDefensa((byte)(ventana.personaje.getDefensa()-dañoMaquina));
+								}else if(defensa==0&&ventana.personaje.getDefensa()==0) {
+									ventana.personaje.setVida((byte)(ventana.personaje.getVida()-dañoMaquina));
 								}
 							}
 							break;
 						case 1:
-							textArea.append("\nHas atacado/defendido con: "+ ventana.personaje.getMazo().get(numeroTocado3)
-									+ "\nTe queda de defensa: "+(ventana.personaje.getDefensa())
-									+ "\nTe queda de vida: "+(ventana.personaje.getVida()));
-							textArea.append("\nEl enemigo ha atacado/defendido con: "+ ventana.personaje2.getMazo().get(numeroTocado3)
-									+ "\nLe queda de defensa: "+(ventana.personaje2.getDefensa())
-									+ "\nLe queda de vida: "+(ventana.personaje2.getVida()));
 							if (ventana.personaje2.getMazo().get(numeroTocado3).getClass() == CartaOfensiva.class) {
-								dañoMaquina = dañoMaquina = ((CartaOfensiva) ventana.personaje2.getMazo().get(numeroTocado3)).getDaño();
-								if (defensa != 0) {
+								textArea.append("\nEl enemigo ha atacado con: "
+										+ ventana.personaje2.getMazo().get(numeroTocado3) + "\nLe queda de defensa: "
+										+ (ventana.personaje2.getDefensa()) + "\nLe queda de vida: "
+										+ (ventana.personaje2.getVida()));
+								dañoMaquina = dañoMaquina = ((CartaOfensiva) ventana.personaje2.getMazo()
+										.get(numeroTocado3)).getDaño();
+								if (defensa != 0 && dañoMaquina <= defensa) {
 									((CartaDefensiva) ventana.personaje.getMazo().get(numeroTocado1))
 											.setDefensa((byte) (defensa - dañoMaquina));
-								}else {
-									if(ventana.personaje.getDefensa()!=0) {
-										ventana.personaje.setDefensa((byte)(ventana.personaje.getDefensa()-dañoMaquina));
-									}else {
-										ventana.personaje.setVida((byte)(ventana.personaje.getVida()-dañoMaquina));
+								} else if (defensa != 0 && dañoMaquina > defensa) {
+									byte dañoRestante = (byte) (dañoMaquina - defensa);
+									((CartaDefensiva) ventana.personaje.getMazo().get(numeroTocado1))
+									.setDefensa((byte) (defensa - dañoMaquina));
+									if (ventana.personaje.getDefensa() != 0) {
+										ventana.personaje
+												.setDefensa((byte) (ventana.personaje.getDefensa() - dañoRestante));
+									} else {
+										ventana.personaje.setVida((byte) (ventana.personaje.getVida() - dañoRestante));
 									}
+								}else if(defensa==0&&ventana.personaje.getDefensa()!=0) {
+									if(dañoMaquina>ventana.personaje.getDefensa()) {
+										byte dañoRestante=(byte)(dañoMaquina-ventana.personaje.getDefensa());
+										ventana.personaje.setVida((byte)(ventana.personaje.getVida()-dañoRestante));
+									}
+									ventana.personaje.setDefensa((byte)(ventana.personaje.getDefensa()-dañoMaquina));
+								}else if(defensa==0&&ventana.personaje.getDefensa()==0) {
+									ventana.personaje.setVida((byte)(ventana.personaje.getVida()-dañoMaquina));
 								}
 							}
 							break;
 						case 2:
-							textArea.append("\nHas atacado/defendido con: "+ ventana.personaje.getMazo().get(numeroTocado2)
-									+ "\nTe queda de defensa: "+(ventana.personaje.getDefensa())
-									+ "\nTe queda de vida: "+(ventana.personaje.getVida()));
-							textArea.append("\nEl enemigo ha atacado/defendido con: "+ ventana.personaje2.getMazo().get(numeroTocado2)
-									+ "\nLe queda de defensa: "+(ventana.personaje2.getDefensa())
-									+ "\nLe queda de vida: "+(ventana.personaje2.getVida()));
+
 							if (ventana.personaje2.getMazo().get(numeroTocado2).getClass() == CartaOfensiva.class) {
-								dañoMaquina = dañoMaquina = ((CartaOfensiva) ventana.personaje2.getMazo().get(numeroTocado2)).getDaño();
-								if (defensa != 0) {
+								textArea.append("\nEl enemigo ha atacado con: "
+										+ ventana.personaje2.getMazo().get(numeroTocado2) + "\nLe queda de defensa: "
+										+ (ventana.personaje2.getDefensa()) + "\nLe queda de vida: "
+										+ (ventana.personaje2.getVida()));
+								dañoMaquina = dañoMaquina = ((CartaOfensiva) ventana.personaje2.getMazo()
+										.get(numeroTocado2)).getDaño();
+								if (defensa != 0 && dañoMaquina <= defensa) {
 									((CartaDefensiva) ventana.personaje.getMazo().get(numeroTocado1))
 											.setDefensa((byte) (defensa - dañoMaquina));
-								}else {
-									if(ventana.personaje.getDefensa()!=0) {
-										ventana.personaje.setDefensa((byte)(ventana.personaje.getDefensa()-dañoMaquina));
-									}else {
-										ventana.personaje.setVida((byte)(ventana.personaje.getVida()-dañoMaquina));
+								}else if (defensa != 0 && dañoMaquina > defensa) {
+									byte dañoRestante = (byte) (dañoMaquina - defensa);
+									((CartaDefensiva) ventana.personaje.getMazo().get(numeroTocado1))
+									.setDefensa((byte) (defensa - dañoMaquina));
+									if (ventana.personaje.getDefensa() != 0) {
+										ventana.personaje
+												.setDefensa((byte) (ventana.personaje.getDefensa() - dañoRestante));
+									} else {
+										ventana.personaje.setVida((byte) (ventana.personaje.getVida() - dañoRestante));
 									}
+								}else if(defensa==0&&ventana.personaje.getDefensa()!=0) {
+									if(dañoMaquina>ventana.personaje.getDefensa()) {
+										byte dañoRestante=(byte)(dañoMaquina-ventana.personaje.getDefensa());
+										ventana.personaje.setVida((byte)(ventana.personaje.getVida()-dañoRestante));
+									}
+									ventana.personaje.setDefensa((byte)(ventana.personaje.getDefensa()-dañoMaquina));
+								}else if(defensa==0&&ventana.personaje.getDefensa()==0) {
+									ventana.personaje.setVida((byte)(ventana.personaje.getVida()-dañoMaquina));
 								}
 							}
-							
+
 						}
 					}
 					System.out.println(ventana.personaje);
@@ -340,7 +428,7 @@ public class PantallaNivel extends JPanel {
 		});
 		btnCarta1.setBounds(233, 313, 109, 23);
 		add(btnCarta1);
-		
+
 		final JButton btnCarta2 = new JButton("Ataque/Defensa");
 		buttonGroup.add(btnCarta2);
 		btnCarta2.addMouseListener(new MouseAdapter() {
@@ -354,12 +442,14 @@ public class PantallaNivel extends JPanel {
 						azarMaquina = (byte) cartasMaquina.nextInt(0, 3);
 						switch (azarMaquina) {
 						case 0:
-							textArea.append("\nHas atacado/defendido con: "+ ventana.personaje.getMazo().get(numeroTocado4)
-									+ "\nTe queda de defensa: "+(ventana.personaje.getDefensa())
-									+ "\nTe queda de vida: "+(ventana.personaje.getVida()));
-							textArea.append("\nEl enemigo ha atacado/defendido con: "+ ventana.personaje2.getMazo().get(numeroTocado4)
-									+ "\nLe queda de defensa: "+(ventana.personaje2.getDefensa())
-									+ "\nLe queda de vida: "+(ventana.personaje2.getVida()));
+							textArea.append(
+									"\nHas atacado/defendido con: " + ventana.personaje.getMazo().get(numeroTocado4)
+											+ "\nTe queda de defensa: " + (ventana.personaje.getDefensa())
+											+ "\nTe queda de vida: " + (ventana.personaje.getVida()));
+							textArea.append("\nEl enemigo ha atacado/defendido con: "
+									+ ventana.personaje2.getMazo().get(numeroTocado4) + "\nLe queda de defensa: "
+									+ (ventana.personaje2.getDefensa()) + "\nLe queda de vida: "
+									+ (ventana.personaje2.getVida()));
 							if (ventana.personaje2.getMazo().get(numeroTocado4).getClass() == CartaOfensiva.class) {
 								dañoMaquina = ((CartaOfensiva) ventana.personaje2.getMazo().get(numeroTocado4))
 										.getDaño();
@@ -392,12 +482,14 @@ public class PantallaNivel extends JPanel {
 							}
 							break;
 						case 1:
-							textArea.append("\nHas atacado/defendido con: "+ ventana.personaje.getMazo().get(numeroTocado3)
-									+ "\nTe queda de defensa: "+(ventana.personaje.getDefensa())
-									+ "\nTe queda de vida: "+(ventana.personaje.getVida()));
-							textArea.append("\nEl enemigo ha atacado/defendido con: "+ ventana.personaje2.getMazo().get(numeroTocado3)
-									+ "\nLe queda de defensa: "+(ventana.personaje2.getDefensa())
-									+ "\nLe queda de vida: "+(ventana.personaje2.getVida()));
+							textArea.append(
+									"\nHas atacado/defendido con: " + ventana.personaje.getMazo().get(numeroTocado3)
+											+ "\nTe queda de defensa: " + (ventana.personaje.getDefensa())
+											+ "\nTe queda de vida: " + (ventana.personaje.getVida()));
+							textArea.append("\nEl enemigo ha atacado/defendido con: "
+									+ ventana.personaje2.getMazo().get(numeroTocado3) + "\nLe queda de defensa: "
+									+ (ventana.personaje2.getDefensa()) + "\nLe queda de vida: "
+									+ (ventana.personaje2.getVida()));
 							if (ventana.personaje2.getMazo().get(numeroTocado3).getClass() == CartaOfensiva.class) {
 								dañoMaquina = ((CartaOfensiva) ventana.personaje2.getMazo().get(numeroTocado3))
 										.getDaño();
@@ -429,12 +521,14 @@ public class PantallaNivel extends JPanel {
 							}
 							break;
 						case 2:
-							textArea.append("\nHas atacado/defendido con: "+ ventana.personaje.getMazo().get(numeroTocado2)
-									+ "\nTe queda de defensa: "+(ventana.personaje.getDefensa())
-									+ "\nTe queda de vida: "+(ventana.personaje.getVida()));
-							textArea.append("\nEl enemigo ha atacado/defendido con: "+ ventana.personaje2.getMazo().get(numeroTocado2)
-									+ "\nLe queda de defensa: "+(ventana.personaje2.getDefensa())
-									+ "\nLe queda de vida: "+(ventana.personaje2.getVida()));
+							textArea.append(
+									"\nHas atacado/defendido con: " + ventana.personaje.getMazo().get(numeroTocado2)
+											+ "\nTe queda de defensa: " + (ventana.personaje.getDefensa())
+											+ "\nTe queda de vida: " + (ventana.personaje.getVida()));
+							textArea.append("\nEl enemigo ha atacado/defendido con: "
+									+ ventana.personaje2.getMazo().get(numeroTocado2) + "\nLe queda de defensa: "
+									+ (ventana.personaje2.getDefensa()) + "\nLe queda de vida: "
+									+ (ventana.personaje2.getVida()));
 							if (ventana.personaje2.getMazo().get(numeroTocado2).getClass() == CartaOfensiva.class) {
 								dañoMaquina = ((CartaOfensiva) ventana.personaje2.getMazo().get(numeroTocado2))
 										.getDaño();
@@ -478,68 +572,80 @@ public class PantallaNivel extends JPanel {
 						azarMaquina = (byte) cartasMaquina.nextInt(0, 3);
 						switch (azarMaquina) {
 						case 0:
-							textArea.append("\nHas atacado/defendido con: "+ ventana.personaje.getMazo().get(numeroTocado4)
-									+ "\nTe queda de defensa: "+(ventana.personaje.getDefensa())
-									+ "\nTe queda de vida: "+(ventana.personaje.getVida()));
-							textArea.append("\nEl enemigo ha atacado/defendido con: "+ ventana.personaje2.getMazo().get(numeroTocado4)
-									+ "\nLe queda de defensa: "+(ventana.personaje2.getDefensa())
-									+ "\nLe queda de vida: "+(ventana.personaje2.getVida()));
+							textArea.append(
+									"\nHas atacado/defendido con: " + ventana.personaje.getMazo().get(numeroTocado4)
+											+ "\nTe queda de defensa: " + (ventana.personaje.getDefensa())
+											+ "\nTe queda de vida: " + (ventana.personaje.getVida()));
+							textArea.append("\nEl enemigo ha atacado/defendido con: "
+									+ ventana.personaje2.getMazo().get(numeroTocado4) + "\nLe queda de defensa: "
+									+ (ventana.personaje2.getDefensa()) + "\nLe queda de vida: "
+									+ (ventana.personaje2.getVida()));
 							if (ventana.personaje2.getMazo().get(numeroTocado4).getClass() == CartaOfensiva.class) {
-								dañoMaquina = dañoMaquina = ((CartaOfensiva) ventana.personaje2.getMazo().get(numeroTocado4)).getDaño();
+								dañoMaquina = dañoMaquina = ((CartaOfensiva) ventana.personaje2.getMazo()
+										.get(numeroTocado4)).getDaño();
 								if (defensa != 0) {
 									((CartaDefensiva) ventana.personaje.getMazo().get(numeroTocado1))
 											.setDefensa((byte) (defensa - dañoMaquina));
-								}else {
-									if(ventana.personaje.getDefensa()!=0) {
-										ventana.personaje.setDefensa((byte)(ventana.personaje.getDefensa()-dañoMaquina));
-									}else {
-										ventana.personaje.setVida((byte)(ventana.personaje.getVida()-dañoMaquina));
+								} else {
+									if (ventana.personaje.getDefensa() != 0) {
+										ventana.personaje
+												.setDefensa((byte) (ventana.personaje.getDefensa() - dañoMaquina));
+									} else {
+										ventana.personaje.setVida((byte) (ventana.personaje.getVida() - dañoMaquina));
 									}
 								}
 							}
 							break;
 						case 1:
-							textArea.append("\nHas atacado/defendido con: "+ ventana.personaje.getMazo().get(numeroTocado3)
-									+ "\nTe queda de defensa: "+(ventana.personaje.getDefensa())
-									+ "\nTe queda de vida: "+(ventana.personaje.getVida()));
-							textArea.append("\nEl enemigo ha atacado/defendido con: "+ ventana.personaje2.getMazo().get(numeroTocado3)
-									+ "\nLe queda de defensa: "+(ventana.personaje2.getDefensa())
-									+ "\nLe queda de vida: "+(ventana.personaje2.getVida()));
+							textArea.append(
+									"\nHas atacado/defendido con: " + ventana.personaje.getMazo().get(numeroTocado3)
+											+ "\nTe queda de defensa: " + (ventana.personaje.getDefensa())
+											+ "\nTe queda de vida: " + (ventana.personaje.getVida()));
+							textArea.append("\nEl enemigo ha atacado/defendido con: "
+									+ ventana.personaje2.getMazo().get(numeroTocado3) + "\nLe queda de defensa: "
+									+ (ventana.personaje2.getDefensa()) + "\nLe queda de vida: "
+									+ (ventana.personaje2.getVida()));
 							if (ventana.personaje2.getMazo().get(numeroTocado3).getClass() == CartaOfensiva.class) {
-								dañoMaquina = dañoMaquina = ((CartaOfensiva) ventana.personaje2.getMazo().get(numeroTocado3)).getDaño();
+								dañoMaquina = dañoMaquina = ((CartaOfensiva) ventana.personaje2.getMazo()
+										.get(numeroTocado3)).getDaño();
 								if (defensa != 0) {
 									((CartaDefensiva) ventana.personaje.getMazo().get(numeroTocado1))
 											.setDefensa((byte) (defensa - dañoMaquina));
-								}else {
-									if(ventana.personaje.getDefensa()!=0) {
-										ventana.personaje.setDefensa((byte)(ventana.personaje.getDefensa()-dañoMaquina));
-									}else {
-										ventana.personaje.setVida((byte)(ventana.personaje.getVida()-dañoMaquina));
+								} else {
+									if (ventana.personaje.getDefensa() != 0) {
+										ventana.personaje
+												.setDefensa((byte) (ventana.personaje.getDefensa() - dañoMaquina));
+									} else {
+										ventana.personaje.setVida((byte) (ventana.personaje.getVida() - dañoMaquina));
 									}
 								}
 							}
 							break;
 						case 2:
-							textArea.append("\nHas atacado/defendido con: "+ ventana.personaje.getMazo().get(numeroTocado2)
-									+ "\nTe queda de defensa: "+(ventana.personaje.getDefensa())
-									+ "\nTe queda de vida: "+(ventana.personaje.getVida()));
-							textArea.append("\nEl enemigo ha atacado/defendido con: "+ ventana.personaje2.getMazo().get(numeroTocado2)
-									+ "\nLe queda de defensa: "+(ventana.personaje2.getDefensa())
-									+ "\nLe queda de vida: "+(ventana.personaje2.getVida()));
+							textArea.append(
+									"\nHas atacado/defendido con: " + ventana.personaje.getMazo().get(numeroTocado2)
+											+ "\nTe queda de defensa: " + (ventana.personaje.getDefensa())
+											+ "\nTe queda de vida: " + (ventana.personaje.getVida()));
+							textArea.append("\nEl enemigo ha atacado/defendido con: "
+									+ ventana.personaje2.getMazo().get(numeroTocado2) + "\nLe queda de defensa: "
+									+ (ventana.personaje2.getDefensa()) + "\nLe queda de vida: "
+									+ (ventana.personaje2.getVida()));
 							if (ventana.personaje2.getMazo().get(numeroTocado2).getClass() == CartaOfensiva.class) {
-								dañoMaquina = dañoMaquina = ((CartaOfensiva) ventana.personaje2.getMazo().get(numeroTocado2)).getDaño();
+								dañoMaquina = dañoMaquina = ((CartaOfensiva) ventana.personaje2.getMazo()
+										.get(numeroTocado2)).getDaño();
 								if (defensa != 0) {
 									((CartaDefensiva) ventana.personaje.getMazo().get(numeroTocado1))
 											.setDefensa((byte) (defensa - dañoMaquina));
-								}else {
-									if(ventana.personaje.getDefensa()!=0) {
-										ventana.personaje.setDefensa((byte)(ventana.personaje.getDefensa()-dañoMaquina));
-									}else {
-										ventana.personaje.setVida((byte)(ventana.personaje.getVida()-dañoMaquina));
+								} else {
+									if (ventana.personaje.getDefensa() != 0) {
+										ventana.personaje
+												.setDefensa((byte) (ventana.personaje.getDefensa() - dañoMaquina));
+									} else {
+										ventana.personaje.setVida((byte) (ventana.personaje.getVida() - dañoMaquina));
 									}
 								}
 							}
-							
+
 						}
 					}
 					System.out.println(ventana.personaje);
@@ -549,7 +655,7 @@ public class PantallaNivel extends JPanel {
 		});
 		btnCarta2.setBounds(380, 313, 140, 23);
 		add(btnCarta2);
-		
+
 		final JButton btnCarta3 = new JButton("Ataque/Defensa");
 		buttonGroup.add(btnCarta3);
 		btnCarta3.addMouseListener(new MouseAdapter() {
@@ -563,12 +669,14 @@ public class PantallaNivel extends JPanel {
 						azarMaquina = (byte) cartasMaquina.nextInt(0, 3);
 						switch (azarMaquina) {
 						case 0:
-							textArea.append("\nHas atacado/defendido con: "+ ventana.personaje.getMazo().get(numeroTocado4)
-									+ "\nTe queda de defensa: "+(ventana.personaje.getDefensa())
-									+ "\nTe queda de vida: "+(ventana.personaje.getVida()));
-							textArea.append("\nEl enemigo ha atacado/defendido con: "+ ventana.personaje2.getMazo().get(numeroTocado4)
-									+ "\nLe queda de defensa: "+(ventana.personaje2.getDefensa())
-									+ "\nLe queda de vida: "+(ventana.personaje2.getVida()));
+							textArea.append(
+									"\nHas atacado/defendido con: " + ventana.personaje.getMazo().get(numeroTocado4)
+											+ "\nTe queda de defensa: " + (ventana.personaje.getDefensa())
+											+ "\nTe queda de vida: " + (ventana.personaje.getVida()));
+							textArea.append("\nEl enemigo ha atacado/defendido con: "
+									+ ventana.personaje2.getMazo().get(numeroTocado4) + "\nLe queda de defensa: "
+									+ (ventana.personaje2.getDefensa()) + "\nLe queda de vida: "
+									+ (ventana.personaje2.getVida()));
 							if (ventana.personaje2.getMazo().get(numeroTocado4).getClass() == CartaOfensiva.class) {
 								dañoMaquina = ((CartaOfensiva) ventana.personaje2.getMazo().get(numeroTocado4))
 										.getDaño();
@@ -601,12 +709,14 @@ public class PantallaNivel extends JPanel {
 							}
 							break;
 						case 1:
-							textArea.append("\nHas atacado/defendido con: "+ ventana.personaje.getMazo().get(numeroTocado3)
-									+ "\nTe queda de defensa: "+(ventana.personaje.getDefensa())
-									+ "\nTe queda de vida: "+(ventana.personaje.getVida()));
-							textArea.append("\nEl enemigo ha atacado/defendido con: "+ ventana.personaje2.getMazo().get(numeroTocado3)
-									+ "\nLe queda de defensa: "+(ventana.personaje2.getDefensa())
-									+ "\nLe queda de vida: "+(ventana.personaje2.getVida()));
+							textArea.append(
+									"\nHas atacado/defendido con: " + ventana.personaje.getMazo().get(numeroTocado3)
+											+ "\nTe queda de defensa: " + (ventana.personaje.getDefensa())
+											+ "\nTe queda de vida: " + (ventana.personaje.getVida()));
+							textArea.append("\nEl enemigo ha atacado/defendido con: "
+									+ ventana.personaje2.getMazo().get(numeroTocado3) + "\nLe queda de defensa: "
+									+ (ventana.personaje2.getDefensa()) + "\nLe queda de vida: "
+									+ (ventana.personaje2.getVida()));
 							if (ventana.personaje2.getMazo().get(numeroTocado3).getClass() == CartaOfensiva.class) {
 								dañoMaquina = ((CartaOfensiva) ventana.personaje2.getMazo().get(numeroTocado3))
 										.getDaño();
@@ -638,12 +748,14 @@ public class PantallaNivel extends JPanel {
 							}
 							break;
 						case 2:
-							textArea.append("\nHas atacado/defendido con: "+ ventana.personaje.getMazo().get(numeroTocado2)
-									+ "\nTe queda de defensa: "+(ventana.personaje.getDefensa())
-									+ "\nTe queda de vida: "+(ventana.personaje.getVida()));
-							textArea.append("\nEl enemigo ha atacado/defendido con: "+ ventana.personaje2.getMazo().get(numeroTocado2)
-									+ "\nLe queda de defensa: "+(ventana.personaje2.getDefensa())
-									+ "\nLe queda de vida: "+(ventana.personaje2.getVida()));
+							textArea.append(
+									"\nHas atacado/defendido con: " + ventana.personaje.getMazo().get(numeroTocado2)
+											+ "\nTe queda de defensa: " + (ventana.personaje.getDefensa())
+											+ "\nTe queda de vida: " + (ventana.personaje.getVida()));
+							textArea.append("\nEl enemigo ha atacado/defendido con: "
+									+ ventana.personaje2.getMazo().get(numeroTocado2) + "\nLe queda de defensa: "
+									+ (ventana.personaje2.getDefensa()) + "\nLe queda de vida: "
+									+ (ventana.personaje2.getVida()));
 							if (ventana.personaje2.getMazo().get(numeroTocado2).getClass() == CartaOfensiva.class) {
 								dañoMaquina = ((CartaOfensiva) ventana.personaje2.getMazo().get(numeroTocado2))
 										.getDaño();
@@ -687,68 +799,80 @@ public class PantallaNivel extends JPanel {
 						azarMaquina = (byte) cartasMaquina.nextInt(0, 3);
 						switch (azarMaquina) {
 						case 0:
-							textArea.append("\nHas atacado/defendido con: "+ ventana.personaje.getMazo().get(numeroTocado4)
-									+ "\nTe queda de defensa: "+(ventana.personaje.getDefensa())
-									+ "\nTe queda de vida: "+(ventana.personaje.getVida()));
-							textArea.append("\nEl enemigo ha atacado/defendido con: "+ ventana.personaje2.getMazo().get(numeroTocado4)
-									+ "\nLe queda de defensa: "+(ventana.personaje2.getDefensa())
-									+ "\nLe queda de vida: "+(ventana.personaje2.getVida()));
+							textArea.append(
+									"\nHas atacado/defendido con: " + ventana.personaje.getMazo().get(numeroTocado4)
+											+ "\nTe queda de defensa: " + (ventana.personaje.getDefensa())
+											+ "\nTe queda de vida: " + (ventana.personaje.getVida()));
+							textArea.append("\nEl enemigo ha atacado/defendido con: "
+									+ ventana.personaje2.getMazo().get(numeroTocado4) + "\nLe queda de defensa: "
+									+ (ventana.personaje2.getDefensa()) + "\nLe queda de vida: "
+									+ (ventana.personaje2.getVida()));
 							if (ventana.personaje2.getMazo().get(numeroTocado4).getClass() == CartaOfensiva.class) {
-								dañoMaquina = dañoMaquina = ((CartaOfensiva) ventana.personaje2.getMazo().get(numeroTocado4)).getDaño();
+								dañoMaquina = dañoMaquina = ((CartaOfensiva) ventana.personaje2.getMazo()
+										.get(numeroTocado4)).getDaño();
 								if (defensa != 0) {
 									((CartaDefensiva) ventana.personaje.getMazo().get(numeroTocado1))
 											.setDefensa((byte) (defensa - dañoMaquina));
-								}else {
-									if(ventana.personaje.getDefensa()!=0) {
-										ventana.personaje.setDefensa((byte)(ventana.personaje.getDefensa()-dañoMaquina));
-									}else {
-										ventana.personaje.setVida((byte)(ventana.personaje.getVida()-dañoMaquina));
+								} else {
+									if (ventana.personaje.getDefensa() != 0) {
+										ventana.personaje
+												.setDefensa((byte) (ventana.personaje.getDefensa() - dañoMaquina));
+									} else {
+										ventana.personaje.setVida((byte) (ventana.personaje.getVida() - dañoMaquina));
 									}
 								}
 							}
 							break;
 						case 1:
-							textArea.append("\nHas atacado/defendido con: "+ ventana.personaje.getMazo().get(numeroTocado3)
-									+ "\nTe queda de defensa: "+(ventana.personaje.getDefensa())
-									+ "\nTe queda de vida: "+(ventana.personaje.getVida()));
-							textArea.append("\nEl enemigo ha atacado/defendido con: "+ ventana.personaje2.getMazo().get(numeroTocado3)
-									+ "\nLe queda de defensa: "+(ventana.personaje2.getDefensa())
-									+ "\nLe queda de vida: "+(ventana.personaje2.getVida()));
+							textArea.append(
+									"\nHas atacado/defendido con: " + ventana.personaje.getMazo().get(numeroTocado3)
+											+ "\nTe queda de defensa: " + (ventana.personaje.getDefensa())
+											+ "\nTe queda de vida: " + (ventana.personaje.getVida()));
+							textArea.append("\nEl enemigo ha atacado/defendido con: "
+									+ ventana.personaje2.getMazo().get(numeroTocado3) + "\nLe queda de defensa: "
+									+ (ventana.personaje2.getDefensa()) + "\nLe queda de vida: "
+									+ (ventana.personaje2.getVida()));
 							if (ventana.personaje2.getMazo().get(numeroTocado3).getClass() == CartaOfensiva.class) {
-								dañoMaquina = dañoMaquina = ((CartaOfensiva) ventana.personaje2.getMazo().get(numeroTocado3)).getDaño();
+								dañoMaquina = dañoMaquina = ((CartaOfensiva) ventana.personaje2.getMazo()
+										.get(numeroTocado3)).getDaño();
 								if (defensa != 0) {
 									((CartaDefensiva) ventana.personaje.getMazo().get(numeroTocado1))
 											.setDefensa((byte) (defensa - dañoMaquina));
-								}else {
-									if(ventana.personaje.getDefensa()!=0) {
-										ventana.personaje.setDefensa((byte)(ventana.personaje.getDefensa()-dañoMaquina));
-									}else {
-										ventana.personaje.setVida((byte)(ventana.personaje.getVida()-dañoMaquina));
+								} else {
+									if (ventana.personaje.getDefensa() != 0) {
+										ventana.personaje
+												.setDefensa((byte) (ventana.personaje.getDefensa() - dañoMaquina));
+									} else {
+										ventana.personaje.setVida((byte) (ventana.personaje.getVida() - dañoMaquina));
 									}
 								}
 							}
 							break;
 						case 2:
-							textArea.append("\nHas atacado/defendido con: "+ ventana.personaje.getMazo().get(numeroTocado2)
-									+ "\nTe queda de defensa: "+(ventana.personaje.getDefensa())
-									+ "\nTe queda de vida: "+(ventana.personaje.getVida()));
-							textArea.append("\nEl enemigo ha atacado/defendido con: "+ ventana.personaje2.getMazo().get(numeroTocado2)
-									+ "\nLe queda de defensa: "+(ventana.personaje2.getDefensa())
-									+ "\nLe queda de vida: "+(ventana.personaje2.getVida()));
+							textArea.append(
+									"\nHas atacado/defendido con: " + ventana.personaje.getMazo().get(numeroTocado2)
+											+ "\nTe queda de defensa: " + (ventana.personaje.getDefensa())
+											+ "\nTe queda de vida: " + (ventana.personaje.getVida()));
+							textArea.append("\nEl enemigo ha atacado/defendido con: "
+									+ ventana.personaje2.getMazo().get(numeroTocado2) + "\nLe queda de defensa: "
+									+ (ventana.personaje2.getDefensa()) + "\nLe queda de vida: "
+									+ (ventana.personaje2.getVida()));
 							if (ventana.personaje2.getMazo().get(numeroTocado2).getClass() == CartaOfensiva.class) {
-								dañoMaquina = dañoMaquina = ((CartaOfensiva) ventana.personaje2.getMazo().get(numeroTocado2)).getDaño();
+								dañoMaquina = dañoMaquina = ((CartaOfensiva) ventana.personaje2.getMazo()
+										.get(numeroTocado2)).getDaño();
 								if (defensa != 0) {
 									((CartaDefensiva) ventana.personaje.getMazo().get(numeroTocado1))
 											.setDefensa((byte) (defensa - dañoMaquina));
-								}else {
-									if(ventana.personaje.getDefensa()!=0) {
-										ventana.personaje.setDefensa((byte)(ventana.personaje.getDefensa()-dañoMaquina));
-									}else {
-										ventana.personaje.setVida((byte)(ventana.personaje.getVida()-dañoMaquina));
+								} else {
+									if (ventana.personaje.getDefensa() != 0) {
+										ventana.personaje
+												.setDefensa((byte) (ventana.personaje.getDefensa() - dañoMaquina));
+									} else {
+										ventana.personaje.setVida((byte) (ventana.personaje.getVida() - dañoMaquina));
 									}
 								}
 							}
-							
+
 						}
 					}
 					System.out.println(ventana.personaje);
